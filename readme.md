@@ -4,3 +4,5 @@
 
 ## Materiały
 
+1. Problematyka braków danych
+2. Metody wizualizacji braków danych
