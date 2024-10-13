@@ -211,11 +211,112 @@ print(latex_code)
 ::: panel-tabset
 ## R
 
+```{r}
+x1 <- c(1,2,3,NA)
+summary(x1)
+```
+
+```{r}
+table(x1)
+```
+
+```{r}
+table(x1, useNA = "ifany")
+```
+
+```{r}
+mean(x1)
+```
+
+```{r}
+mean(x1, na.rm = T)
+```
+
+```{r}
+na.omit(x1)
+```
+
+```{r}
+x2 <- c(1,2,3, NA, NaN)
+```
+
+```{r}
+summary(x2)
+```
+
+```{r}
+mean(x2, na.rm=T)
+```
+
+```{r}
+table(x2)
+table(x2, useNA = "ifany")
+```
+
+```{r}
+na.omit(x2)
+```
+
 ## Python
+
+```{python}
+x1 = pd.Series([1, 2, 3, np.nan])
+x1.describe()
+```
+
+```{python}
+x1.value_counts()
+```
+
+```{python}
+x1.value_counts(dropna=False)
+```
+
+
+```{python}
+x1.mean()
+```
+
+
+```{python}
+x1.mean(skipna=True)
+```
+
+
+```{python}
+x1.dropna()
+```
+
+
 
 :::
 
 ## Praca z brakami danych
+
+### Dane wczytywane z plików
+
+::: panel-tabset
+## R
+
+```{r}
+dane <- read.csv("../data/plik-przyklad.csv")
+head(dane)
+```
+
+```{r}
+tail(dane)
+```
+
+Plik zawiera różne sposoby kodowania braków danych? Jakie? 
+
+
+## Python
+
+:::
+
+### Dane ankietowe
+
+W tym miejscu omówiony zostanie zbiór danych z Badania Kapitału Ludzkiego.
 
 ::: panel-tabset
 ## R
