@@ -204,3 +204,90 @@ print(latex_code)
 :::
 
 
+# Braki danych w pakietach statystycznych
+
+## Kodowanie braków danych
+
+::: panel-tabset
+## R
+
+## Python
+
+:::
+
+## Praca z brakami danych
+
+::: panel-tabset
+## R
+
+```{r}
+library(haven)
+```
+
+```{r}
+doc <- read_spss("https://www.parp.gov.pl/images/publications/BKL/nowy-uklad/Baza_danych_z_badania_ludnoci_BKL_edycja_2021_SAV-SPSS.sav")
+str(doc$m9_1,2)
+```
+
+```{r}
+table(doc$m9_1)
+table(doc$m9_1, useNA = "ifany")
+```
+
+```{r}
+doc <- read_spss("https://www.parp.gov.pl/images/publications/BKL/nowy-uklad/Baza_danych_z_badania_ludnoci_BKL_edycja_2021_SAV-SPSS.sav", user_na = T)
+str(doc$m9_1,2)
+```
+
+```{r}
+table(doc$m9_1)
+table(doc$m9_1, useNA = "ifany")
+```
+## Python
+
+```{python}
+import pandas as pd
+import pyreadstat
+import numpy as np
+import requests
+import os
+```
+
+```{python}
+url = "https://www.parp.gov.pl/images/publications/BKL/nowy-uklad/Baza_danych_z_badania_ludnoci_BKL_edycja_2021_SAV-SPSS.sav"
+response = requests.get(url)
+file_name = "../data/downloaded_data.sav"
+with open(file_name, 'wb') as file:
+    file.write(response.content)
+```
+
+```{python}
+df, meta = pyreadstat.read_sav(file_name)
+# Print structure of m9_1
+print(df['m9_1'].dtype)
+print(df['m9_1'].head(2))
+
+```
+
+
+```{python}
+print(df['m9_1'].value_counts())
+print(df['m9_1'].value_counts(dropna=False))
+```
+
+
+```{python}
+df2, meta2 = pyreadstat.read_sav(file_name, user_missing=True, usecols = ["m9_1"])
+print(df2['m9_1'].dtype)
+print(df2['m9_1'].head(2))
+```
+
+```{python}
+print(df2['m9_1'].value_counts())
+print(df2['m9_1'].value_counts(dropna=False))
+```
+
+:::
+
+
+
