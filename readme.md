@@ -11,7 +11,7 @@
   + przydatne procedury:
     + R: `rnorm`, `plogis`, `density`, ...
     + Python: `np.random...`,  `gaussian_kde`, ...
-  + [kody do generowania braków danych]()
+  + [kody do generowania braków danych](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/1-probelmatyka-brakow-danych.html)
 2. Kodowanie braków danych w pakietatch statystycznych:
   + R:
   + Python:
