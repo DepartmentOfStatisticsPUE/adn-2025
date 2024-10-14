@@ -204,6 +204,86 @@ print(latex_code)
 :::
 
 
+Wykres na podstawie pracy Riddles, M. K., Kim, J. K., \& Im, J. (2016). A propensity-score-adjustment method for nonignorable nonresponse. Journal of Survey Statistics and Methodology, 4(2), 215-245. (tablica 9).
+
+::: panel-tabset
+
+## R
+
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(patchwork)
+
+# Create the dataset
+data <- data.frame(
+  Gender = rep(c("Male", "Female"), each = 4),
+  Age_group = rep(c("20-29", "30-39", "40-49", "50+"), 2),
+  Voted_A = c(93, 104, 146, 560, 106, 129, 170, 501),
+  Voted_B = c(115, 233, 295, 350, 159, 242, 262, 218),
+  Other = c(4, 8, 5, 3, 8, 5, 5, 7),
+  Refusal = c(28, 82, 49, 174, 62, 70, 69, 211)
+)
+
+# Process the data
+data_processed <- data |>
+  mutate(Voted = Voted_A + Voted_B + Other,
+         Total = Voted + Refusal) |>
+  pivot_longer(cols = c(Voted, Refusal), names_to = "Category", values_to = "Count") |>
+  group_by(Gender, Age_group) |>
+  mutate(Percentage = Count / sum(Count) * 100)
+
+# Function to create a basic plot
+create_plot <- function(data, x_var, title) {
+  ggplot(data, aes(x = .data[[x_var]], y = Percentage, fill = Category)) +
+    geom_bar(stat = "identity", color = "black") + 
+    scale_fill_brewer(type = "seq", palette = "Paired") + 
+    #scale_fill_manual(values = c("Voted" = "#4CAF50", "Refusal" = "#FFA500")) +
+    labs(title = title, x = x_var, y = "Percentage") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    scale_y_continuous(labels = scales::percent_format(scale = 1))
+}
+
+# Create the combined plot
+plot_combined <- create_plot(data_processed, "Age_group", "By Age Group and Gender") +
+  facet_wrap(~ Gender, scales = "free_x", nrow = 1)  +
+  labs(x = "")
+
+# Create the age group plot
+plot_age <- data_processed %>%
+  group_by(Age_group, Category) %>%
+  summarise(Percentage = sum(Count) / sum(Total) * 100, .groups = "drop") %>%
+  create_plot("Age_group", "By Age Group") +
+  labs(x = "")
+
+# Create the gender plot
+plot_gender <- data_processed %>%
+  group_by(Gender, Category) %>%
+  summarise(Percentage = sum(Count) / sum(Total) * 100, .groups = "drop") %>%
+  create_plot("Gender", "By Gender") +
+  labs(x = "")
+
+# Combine all plots using patchwork
+final_plot <- (plot_combined + plot_age + plot_gender) +
+  plot_layout(ncol = 3, widths = c(2, 1, 1)) +
+  plot_annotation(
+    title = "Exit Poll Results for Gangdong-Gap",
+    theme = theme(plot.title = element_text(hjust = 0.5, size = 16))
+  ) + plot_layout(guides = "collect")
+
+# Save the combined plot as a PDF
+ggsave("fig-riddles.pdf", final_plot, width = 10, height = 7, units = "in")
+```
+
+## Python
+
+TBA
+
+:::
+
 # Braki danych w pakietach statystycznych
 
 ## Kodowanie braków danych
