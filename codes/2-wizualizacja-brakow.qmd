@@ -23,8 +23,11 @@ library(ggplot2)
 
 ## Python
 
-```{py}
-
+```{python}
+import pandas as pd
+import numpy as np
+import missingno as msno
+import matplotlib.pyplot as plt
 ```
 
 :::
@@ -85,8 +88,20 @@ ggplot(data=df_cross, aes(x = x1, y)) + geom_miss_point()
 
 ## Python
 
-```{py}
+```{python}
+df_cross = pd.read_csv("../data/data2-cross_sectional.csv")
+df_cross.head()
+```
 
+```{python}
+miss_plot = msno.matrix(df_cross)
+plt.show()
+plt.ioff()
+```
+
+```{python}
+miss_dendro = msno.dendrogram(df_cross)
+plt.show()
 ```
 
 :::
