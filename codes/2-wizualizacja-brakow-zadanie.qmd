@@ -29,6 +29,7 @@ import pandas as pd
 import numpy as np
 import missingno as msno
 import matplotlib.pyplot as plt
+import seaborn as sns
 ```
 
 :::
@@ -51,30 +52,32 @@ Zadania i pytania:
 ::: panel-tabset
 ## R
 
+Ad 1. 
+
 ```{r wczytanie}
 dane <- read.csv("../data/data2-zajecia-przyklad1.csv") |> setDT()
 head(dane)
 ```
 
-Ad 1. 
+Ad 2. 
 
 ```{r}
 mean(is.na(dane$lud_na_1k))
 ```
 
-Ad 2. 
+Ad 3. 
 
 ```{r}
 length(unique(dane$gmina))
 ```
 
-Ad 3. 
+Ad 4. 
 
 ```{r}
 length(unique(dane$rok))
 ```
 
-Ad 4. 
+Ad 5. 
 
 ```{r}
 table(table(dane$gmina[!is.na(dane$lud_na_1k)]))
@@ -101,6 +104,8 @@ Ad 6.
 panelview(data = dane, formula = lud_na_1k ~ 1, index = c("gmina", "rok"), type = "missing")
 ```
 
+Ad 7.
+
 Wzorce mozemy znaleźć tutaj: 
 
 ```{r}
@@ -119,27 +124,69 @@ dane |>
 
 ## Python
 
-```{python wczytanie}
+Ad 1.
+```{python wczytanie-py}
 # Read data
 df = pd.read_csv("../data/data2-zajecia-przyklad1.csv")
 df.head()
 ```
 
-```{python wczytanie}
-# Basic statistics
-print("Missing rate for lud_na_1k:", df['lud_na_1k'].isna().mean())
-print("Number of unique gmina:", df['gmina'].nunique())
-print("Number of unique years:", df['rok'].nunique())
+Ad 2.
 
-# Count occurrences per gmina for non-missing values
+```{python}
+df['lud_na_1k'].isna().mean().round(4)
+```
+
+Ad 3.
+
+```{python}
+df['gmina'].nunique()
+```
+
+Ad 4.
+
+```{python}
+df['rok'].nunique()
+```
+
+Ad 5.
+
+```{python}
 gmina_counts = df.loc[~df['lud_na_1k'].isna(), 'gmina'].value_counts().value_counts()
-print("\nFrequency table of observations per gmina:")
-print(gmina_counts)
+gmina_counts
+```
 
-# Find years with missing data
+```{python}
 all_years = set(df['rok'].unique())
 years_with_data = set(df.loc[~df['lud_na_1k'].isna(), 'rok'].unique())
-print("\nYears with missing data:", sorted(all_years - years_with_data))
+sorted(all_years - years_with_data)
 ```
+
+Ad 6.
+
+```{python}
+df_wide = df.pivot(index=['gmina', 'gmina_nazwa'], 
+                  columns='rok', 
+                  values='lud_na_1k')
+
+msno.matrix(df_wide)
+plt.title('Missing Data Pattern')
+plt.show()
+```
+
+
+```{python}
+missing_pattern = df.pivot(index='gmina', 
+                         columns='rok', 
+                         values='lud_na_1k').isnull()
+plt.figure(figsize=(12, 8))
+sns.heatmap(missing_pattern, cbar=False, cmap='binary')
+plt.title('Panel View of Missing Data')
+plt.show()
+```
+
+
+Ad 7. TBA
+
 
 :::
