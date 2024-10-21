@@ -19,6 +19,7 @@ library(VIM)
 library(naniar)
 library(panelView)
 library(ggplot2)
+library(data.table)
 ```
 
 ## Python
@@ -35,29 +36,110 @@ import matplotlib.pyplot as plt
 
 ## Rozwiązanie zadania
 
-+ Na github, w folderze, `data/` mogą Państwo znaleźć zbiór `data2-zajecia-przyklad1.csv`.
-+ Zawiera następujące kolumny: gmina, gmina_nazwa, rok i liczba osób na 1 km (`lud_na_1k`).
+Na github, w folderze, `data/` mogą Państwo znaleźć zbiór `data2-zajecia-przyklad1.csv`, który następujące kolumny: gmina, gmina_nazwa, rok i liczba osób na 1 km (`lud_na_1k`).
 
 Zadania i pytania:
 
-  + Wczytać zbiór danych.
-  + Ile jest \% braków danych w kolumnie `lud_na_1k`? 
-  + Ile jednostek (`gmina`) obserwujemy w zbiorze danych? 
-  + Ile okresów (`rok`) obserwujemy w zbiorze danych?
-  + Ile jednostek obserwujemy w całym okresie? 
-  + Przedstawić wizualizację szeregu czasowego z~wykorzystaniem pakietu `panelView`.
-  + Jakie wzorce obserwujemy w danych?
+1. Wczytać zbiór danych.
+2. Ile jest \% braków danych w kolumnie `lud_na_1k`? 
+3. Ile jednostek (`gmina`) obserwujemy w zbiorze danych? 
+4. Ile okresów (`rok`) obserwujemy w zbiorze danych?
+5. Ile jednostek obserwujemy w całym okresie? 
+6. Przedstawić wizualizację szeregu czasowego z~wykorzystaniem pakietu `panelView`.
+7. Jakie wzorce obserwujemy w danych?
             
 ::: panel-tabset
 ## R
 
 ```{r wczytanie}
+dane <- read.csv("../data/data2-zajecia-przyklad1.csv") |> setDT()
+head(dane)
+```
 
+Ad 1. 
+
+```{r}
+mean(is.na(dane$lud_na_1k))
+```
+
+Ad 2. 
+
+```{r}
+length(unique(dane$gmina))
+```
+
+Ad 3. 
+
+```{r}
+length(unique(dane$rok))
+```
+
+Ad 4. 
+
+```{r}
+table(table(dane$gmina[!is.na(dane$lud_na_1k)]))
+```
+
+Żadnej! Maksymalnie obserwujemy 22 razy, dlaczego?
+
+
+```{r}
+setdiff(unique(dane$rok), unique(dane$rok[!is.na(dane$lud_na_1k)]))
+```
+
+Bo w 2000 i w 2001 mamy same braki danych. Możemy zobaczyć to samo korzystając z pakietu `VIM`
+
+```{r}
+dane |> 
+  dcast(gmina + gmina_nazwa ~ rok, value.var = "lud_na_1k") |>
+  VIM::aggr()
+```
+
+Ad 6.
+
+```{r}
+panelview(data = dane, formula = lud_na_1k ~ 1, index = c("gmina", "rok"), type = "missing")
+```
+
+Wzorce mozemy znaleźć tutaj: 
+
+```{r}
+dane |> 
+  dcast(gmina + gmina_nazwa ~ rok, value.var = "lud_na_1k") |>
+  VIM::aggr()
+```
+
+Lub tutaj:
+
+```{r}
+dane |> 
+  dcast(gmina + gmina_nazwa ~ rok, value.var = "lud_na_1k") |>
+  gg_miss_upset(nsets = 24)
 ```
 
 ## Python
 
 ```{python wczytanie}
+# Read data
+df = pd.read_csv("../data/data2-zajecia-przyklad1.csv")
+df.head()
+```
+
+```{python wczytanie}
+# Basic statistics
+print("Missing rate for lud_na_1k:", df['lud_na_1k'].isna().mean())
+print("Number of unique gmina:", df['gmina'].nunique())
+print("Number of unique years:", df['rok'].nunique())
+
+# Count occurrences per gmina for non-missing values
+gmina_counts = df.loc[~df['lud_na_1k'].isna(), 'gmina'].value_counts().value_counts()
+print("\nFrequency table of observations per gmina:")
+print(gmina_counts)
+
+# Find years with missing data
+all_years = set(df['rok'].unique())
+years_with_data = set(df.loc[~df['lud_na_1k'].isna(), 'rok'].unique())
+print("\nYears with missing data:", sorted(all_years - years_with_data))
 ```
 
 :::
