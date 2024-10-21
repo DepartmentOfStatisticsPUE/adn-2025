@@ -1,0 +1,134 @@
+---
+title: "1. Problematyka braków danych"
+format: 
+  html:
+    self-contained: true
+    number-sections: true
+    toc: true
+    toc-title: "Spis treści"
+editor: source
+---
+
+# Wczytanie potrzebych pakietów
+
+::: panel-tabset
+## R
+
+```{r packages, message=F, warning=F}
+library(VIM)
+library(naniar)
+library(panelView)
+library(ggplot2)
+```
+
+## Python
+
+```{py}
+
+```
+
+:::
+
+
+# Przykład 1: dane przekrojowe
+
+
+Wczytujemy zbiór danych `data2-cross_sectional.csv`
+
+::: panel-tabset
+## R
+
+```{r}
+df_cross <- read.csv("../data/data2-cross_sectional.csv")
+head(df_cross)
+```
+
+Proste podsumowanie
+
+```{r}
+summary(df_cross)
+```
+
+Wizualizacja z pakietem `VIM`
+
+```{r}
+vim_result <- aggr(x = df_cross)
+```
+
+```{r}
+summary(vim_result)
+```
+
+Wizualizacja z pakietem `naniar`.
+
+```{r}
+vis_miss(df_cross)
+```
+```{r}
+vis_miss(df_cross, cluster = T, sort_miss = T)
+```
+```{r}
+gg_miss_var(df_cross)
+```
+```{r}
+gg_miss_upset(df_cross)
+```
+
+```{r}
+ggplot(data=df_cross, aes(x = x1, y)) + geom_point()
+```
+
+```{r}
+ggplot(data=df_cross, aes(x = x1, y)) + geom_miss_point()
+```
+
+
+## Python
+
+```{py}
+
+```
+
+:::
+
+## Przykład 2: dane panelowe
+
+Wczytujemy dane w dwóch formatach: `data/data2-panel_long.csv`, `data/data2-panel_wide.csv`
+
+::: panel-tabset
+## R
+
+```{r}
+df_long <- read.csv("../data/data2-panel_long.csv")
+head(df_long)
+```
+
+```{r}
+df_wide <- read.csv("../data/data2-panel_wide.csv")
+head(df_wide)
+```
+
+```{r}
+VIM::aggr(df_wide)
+```
+
+```{r}
+panelview(data = df_long, formula = y ~ 1, index = c("unit_id", "year"), type = "missing")
+```
+
+```{r}
+panelview(data = df_long, formula = x2 ~ 1, index = c("unit_id", "year"), type = "missing")
+```
+```{r}
+panelview(data = df_long, formula = 1 ~ y + x1 + x2, index = c("unit_id", "year"), type = "missing")
+```
+
+## Python
+
+```{py}
+
+```
+
+:::
+
+

@@ -23,7 +23,7 @@
 
 3. Metody wizualizacji braków danych
   + narzędzia:
-    + R:
-    + Python:
-  + [wizualizacja braków danych]()
+    + R: `VIM`, `naniar`, `panelView`
+    + Python: `missingno`
+  + [wizualizacja braków danych](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/2-wizualizacja-brakow.html)
   
