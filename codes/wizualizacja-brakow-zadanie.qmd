@@ -1,0 +1,62 @@
+---
+title: "1. Problematyka braków danych"
+format: 
+  html:
+    self-contained: true
+    number-sections: true
+    toc: true
+    toc-title: "Spis treści"
+editor: source
+---
+
+# Wczytanie potrzebych pakietów
+
+::: panel-tabset
+## R
+
+```{r packages, message=F, warning=F}
+library(VIM)
+library(naniar)
+library(panelView)
+library(ggplot2)
+```
+
+## Python
+
+```{python}
+import pandas as pd
+import numpy as np
+import missingno as msno
+import matplotlib.pyplot as plt
+```
+
+:::
+
+
+## Rozwiązanie zadania
+
++ Na github, w folderze, `data/` mogą Państwo znaleźć zbiór `data2-zajecia-przyklad1.csv`.
++ Zawiera następujące kolumny: gmina, gmina_nazwa, rok i liczba osób na 1 km (`lud_na_1k`).
+
+Zadania i pytania:
+  + Wczytać zbiór danych.
+  + Ile jest \% braków danych w kolumnie `lud_na_1k`? 
+  + Ile jednostek (`gmina`) obserwujemy w zbiorze danych? 
+  + Ile okresów (`rok`) obserwujemy w zbiorze danych?
+  + Ile jednostek obserwujemy w całym okresie? 
+  + Przedstawić wizualizację szeregu czasowego z~wykorzystaniem pakietu `panelView`.
+  + Jakie wzorce obserwujemy w danych?
+            
+::: panel-tabset
+## R
+
+```{r wczytanie}
+
+```
+
+## Python
+
+```{python wczytanie}
+```
+
+:::
