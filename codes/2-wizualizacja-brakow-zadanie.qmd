@@ -39,6 +39,7 @@ import matplotlib.pyplot as plt
 + Zawiera następujące kolumny: gmina, gmina_nazwa, rok i liczba osób na 1 km (`lud_na_1k`).
 
 Zadania i pytania:
+
   + Wczytać zbiór danych.
   + Ile jest \% braków danych w kolumnie `lud_na_1k`? 
   + Ile jednostek (`gmina`) obserwujemy w zbiorze danych? 
