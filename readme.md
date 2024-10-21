@@ -25,6 +25,9 @@
   + narzędzia:
     + R: `VIM`, `naniar`, `panelView`
     + Python: `missingno`
-  + [wizualizacja braków danych](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/2-wizualizacja-brakow.html)
+  + Kody generujące przykłady: [R](codes/script-01-gen-mechanisms.R), [Python](codes/script-01-gen-mechanisms.py)
+  + Zbiory danych na zajęcia: [dane przekrojowe](data/data2-cross_sectional.csv), [dane panelowe (long)](data/data2-panel_long.csv), [dane panelowe (wide)](data/data2-panel_wide.csv)
   + Zbiór danych na ćwiczenia [data2-zajecia-przyklad1.csv](data/data2-zajecia-przyklad1.csv)
+  + Notatnik na zajęcia: [Wizualizacja braków danych](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/2-wizualizacja-brakow.html)
+  
   
