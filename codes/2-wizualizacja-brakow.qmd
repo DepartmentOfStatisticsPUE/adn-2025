@@ -28,6 +28,7 @@ import pandas as pd
 import numpy as np
 import missingno as msno
 import matplotlib.pyplot as plt
+import seaborn as sns
 ```
 
 :::
@@ -106,7 +107,7 @@ plt.show()
 
 :::
 
-## Przykład 2: dane panelowe
+# Przykład 2: dane panelowe
 
 Wczytujemy dane w dwóch formatach: `data/data2-panel_long.csv`, `data/data2-panel_wide.csv`
 
@@ -140,8 +141,17 @@ panelview(data = df_long, formula = 1 ~ y + x1 + x2, index = c("unit_id", "year"
 
 ## Python
 
-```{py}
+```{python}
+df_long = pd.read_csv("../data/data2-panel_long.csv")
+df_long.head()
+```
 
+```{python}
+missing_pattern = df_long.pivot(index='unit_id', columns='year', values='y').isnull()
+plt.figure(figsize=(12, 8))
+sns.heatmap(missing_pattern, cbar=True, cmap='binary')
+plt.title('Panel View of Missing Data')
+plt.show()
 ```
 
 :::
