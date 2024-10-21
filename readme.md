@@ -4,6 +4,7 @@
 
 + Materiały: github, moodle
 + Zaliczenie: projekt przez Kaggle
++ [Sylabus](https://esylabus.ue.poznan.pl/pl/document/8ba52650-091b-4852-9553-34fc9410f610.pdf)
 
 ## Materiały na zajęcia
 
