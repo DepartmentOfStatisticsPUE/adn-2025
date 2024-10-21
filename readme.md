@@ -26,4 +26,5 @@
     + R: `VIM`, `naniar`, `panelView`
     + Python: `missingno`
   + [wizualizacja braków danych](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/2-wizualizacja-brakow.html)
+  + Zbiór danych na ćwiczenia [data2-zajecia-przyklad1.csv](data/data2-zajecia-przyklad1.csv)
   
