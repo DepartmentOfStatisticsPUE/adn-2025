@@ -29,6 +29,7 @@ import numpy as np
 import missingno as msno
 import matplotlib.pyplot as plt
 import seaborn as sns
+from upsetty import Upset
 ```
 
 :::
@@ -104,6 +105,10 @@ plt.ioff()
 miss_dendro = msno.dendrogram(df_cross)
 plt.show()
 ```
+```{python}
+upset = Upset.generate_plot(df_cross.isnull())
+upset.show()
+```
 
 :::
 
@@ -147,12 +152,20 @@ df_long.head()
 ```
 
 ```{python}
+df_wide = pd.read_csv("../data/data2-panel_wide.csv")
+df_wide.head()
+```
+
+```{python}
 missing_pattern = df_long.pivot(index='unit_id', columns='year', values='y').isnull()
 plt.figure(figsize=(12, 8))
 sns.heatmap(missing_pattern, cbar=True, cmap='binary')
 plt.title('Panel View of Missing Data')
 plt.show()
 ```
+
+
+
 
 :::
 
