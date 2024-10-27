@@ -34,3 +34,8 @@
   + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/2-wizualizacja-brakow-zadanie.html) z rozwiązaniem zadania z zajęć.
   
 ### 4. Imputacja danych
+
++ Imputacja dedukcyjna:
+    + R: `zoo::na.locf`, `tidyr::fill`, `data.table::nafill`, `deducorrect`
+    + Python: `fillna` z `pandas`
+    + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/3-imputacja dedukcyjna.html)
