@@ -50,7 +50,7 @@ Cel: zaimputowanie brakujących wartości.
 
 
 ```{r}
-dane <- read.csv("../data/data3-przyklad-imputacji.csv",)
+dane <- read.csv("../data/data3-przyklad-imputacji.csv")
 head(dane)
 ```
 
