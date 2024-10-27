@@ -5,6 +5,7 @@
 + Materiały: github, moodle
 + Zaliczenie: projekt przez Kaggle
 + [Sylabus](https://esylabus.ue.poznan.pl/pl/document/8ba52650-091b-4852-9553-34fc9410f610.pdf)
++ [Slajdy](https://www.overleaf.com/read/kzydvvmfvtnq#32e3c2)
 
 ## Materiały na zajęcia
 
@@ -32,4 +33,4 @@
   + Notatnik na zajęcia: [Wizualizacja braków danych](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/2-wizualizacja-brakow.html)
   + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/2-wizualizacja-brakow-zadanie.html) z rozwiązaniem zadania z zajęć.
   
-  
+### 4. Imputacja danych
