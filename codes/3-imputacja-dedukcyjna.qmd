@@ -157,22 +157,21 @@ x3 <- 150
 Am <- matrix(c(1, 0, 0, 1), nrow = 2, byrow = TRUE)
  
  # Macierz dla znanych wartości [x1, x3, x4]
-Ao <- matrix(c(1, -1, 0,
-                -1, 0, 1), 
-              nrow = 2, byrow = TRUE)
+Ao <- matrix(c(1, -1, 0, 
+               -1, 0, 1), 
+             nrow = 2, byrow = TRUE)
  
- # Wektor znanych wartości
- xo <- matrix(c(100, 150, 40), nrow = 3)
+# Wektor znanych wartości
+xo <- matrix(c(100, 150, 40), nrow = 3)
  
- # Wektor wyrazów wolnych
- b <- matrix(c(0, 0), nrow = 2)
+# Wektor wyrazów wolnych
+b <- matrix(c(0, 0), nrow = 2)
 
- # Obliczamy prawą stronę równania
- right_side <- b - Ao %*% xo
- 
- # Obliczamy rozwiązanie używając pseudoodwrotności Moore-Penrose
- xm <- ginv(Am) %*% right_side
- xm
+# Obliczamy prawą stronę równania
+b_star <- b - Ao %*% xo
+# Rozwiązujemy używając pseudoodwrotności Moore-Penrose
+x_m <- ginv(Am) %*% b_star
+x_m
 ```
 
 Przykład 2 z zajęć
@@ -183,8 +182,8 @@ Am <- matrix(c(1, -1, -1, 0), nrow = 2, byrow = TRUE)
 Ao <- matrix(c(1, 2), nrow = 2, ncol = 1)
 xo <- matrix(10, nrow = 1)
 b <- matrix(c(0, 0), nrow = 2)
-right_side <- b - Ao %*% xo
-xm <- solve(Am, right_side)
+b_star <- b - Ao %*% xo
+xm <- solve(Am, b_star)
 xm
 ```
 
@@ -220,12 +219,11 @@ xo = np.array([x1, x3, x4])
 b = np.zeros(2)
     
     # Obliczamy prawą stronę równania
-right_side = b - np.dot(Ao, xo)
+b_star = b - np.dot(Ao, xo)
     
     # Obliczamy rozwiązanie używając pseudoodwrotności Moore-Penrose
-xm = np.dot(pinv(Am), right_side)
-xm
-right_side
+x_m = np.dot(pinv(Am), b_star)
+x_m
 ```
 
 Przykład 2 z zajęć
@@ -235,8 +233,8 @@ Am = np.array([[1, -1],[-1, 0]])
 Ao = np.array([[1], [2]])
 xo = np.array([10])
 b = np.array([0, 0])
-right_side = b - np.dot(Ao, xo)
-xm = np.linalg.solve(Am, right_side)
+b_star = b - np.dot(Ao, xo)
+xm = np.linalg.solve(Am, b_star)
 xm
 ```
 

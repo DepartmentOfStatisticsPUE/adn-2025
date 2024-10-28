@@ -3156,8 +3156,8 @@ vertical-align: -.125em;
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dane)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id liczba_pokoi   wojewodztwo  powiat   cena powierzchnia
-1  1            1  dolnoslaskie  208011 320000           32
-2  2           NA          &lt;NA&gt;  208011 310000           NA
+1  1            1  dolnoslaskie  213011 320000           32
+2  2           NA          &lt;NA&gt;  406011 310000           NA
 3  3           NA   mazowieckie  208011 315000           29
 4  4           NA          &lt;NA&gt;  208021 305000           NA
 5  5           NA wielkopolskie  208011 318000           30
@@ -3176,26 +3176,26 @@ vertical-align: -.125em;
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(liczba_pokoi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   id liczba_pokoi   wojewodztwo  powiat   cena powierzchnia
-1   1            1  dolnoslaskie  208011 320000           32
-2   2            1          &lt;NA&gt;  208011 310000           NA
+1   1            1  dolnoslaskie  213011 320000           32
+2   2            1          &lt;NA&gt;  406011 310000           NA
 3   3            1   mazowieckie  208011 315000           29
 4   4            1          &lt;NA&gt;  208021 305000           NA
 5   5            1 wielkopolskie  208011 318000           30
 6   6            2   mazowieckie 1465011 450000           45
 7   7            2          &lt;NA&gt; 1465011 460000           NA
-8   8            2     pomorskie 1465011 455000           46
+8   8            2   mazowieckie 1465011 455000           46
 9   9            2          &lt;NA&gt; 1465012 465000           NA
 10 10            2 wielkopolskie 1465011 458000           45
 11 11            3     lubelskie 3064011 520000           65
 12 12            3          &lt;NA&gt; 3064011 530000           NA
-13 13            3     pomorskie 3064011 525000           64
+13 13            3 wielkopolskie 3064011 525000           64
 14 14            3          &lt;NA&gt; 3064011 535000           NA
-15 15            3  dolnoslaskie 3064011 528000           67
-16 16            4 wielkopolskie  661013 680000           85
+15 15            3  dolnoslaskie   22101 528000           67
+16 16            4 wielkopolskie 3061011 680000           85
 17 17            4          &lt;NA&gt;  661011 670000           NA
-18 18            4     pomorskie  661011 675000           82
+18 18            4     lubelskie  661011 675000           82
 19 19            4          &lt;NA&gt;  661031 685000           NA
-20 20            4   mazowieckie  661011 678000           84
+20 20            4     lubelskie  661011 678000           84
                                                tytul
 1     Przytulna kawalerka 32,1m2, 1 pokój w centrum!
 2  Kompaktowe mieszkanie 30m2 w świetnej lokalizacji
@@ -3237,26 +3237,26 @@ vertical-align: -.125em;
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dane</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   id liczba_pokoi   wojewodztwo  powiat   cena powierzchnia
-1   1            1  dolnoslaskie  208011 320000           32
-2   2            1          &lt;NA&gt;  208011 310000           NA
+1   1            1  dolnoslaskie  213011 320000           32
+2   2            1          &lt;NA&gt;  406011 310000           NA
 3   3            1   mazowieckie  208011 315000           29
 4   4            1          &lt;NA&gt;  208021 305000           NA
 5   5            1 wielkopolskie  208011 318000           30
 6   6            2   mazowieckie 1465011 450000           45
 7   7            2          &lt;NA&gt; 1465011 460000           NA
-8   8            2     pomorskie 1465011 455000           46
+8   8            2   mazowieckie 1465011 455000           46
 9   9            2          &lt;NA&gt; 1465012 465000           NA
 10 10            2 wielkopolskie 1465011 458000           45
 11 11            3     lubelskie 3064011 520000           65
 12 12            3          &lt;NA&gt; 3064011 530000           NA
-13 13            3     pomorskie 3064011 525000           64
+13 13            3 wielkopolskie 3064011 525000           64
 14 14            3          &lt;NA&gt; 3064011 535000           NA
-15 15            3  dolnoslaskie 3064011 528000           67
-16 16            4 wielkopolskie  661013 680000           85
+15 15            3  dolnoslaskie   22101 528000           67
+16 16            4 wielkopolskie 3061011 680000           85
 17 17            4          &lt;NA&gt;  661011 670000           NA
-18 18            4     pomorskie  661011 675000           82
+18 18            4     lubelskie  661011 675000           82
 19 19            4          &lt;NA&gt;  661031 685000           NA
-20 20            4   mazowieckie  661011 678000           84
+20 20            4     lubelskie  661011 678000           84
                                                tytul
 1     Przytulna kawalerka 32,1m2, 1 pokój w centrum!
 2  Kompaktowe mieszkanie 30m2 w świetnej lokalizacji
@@ -3416,22 +3416,21 @@ Name: liczba_pokoi, dtype: float64</code></pre>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>Am <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a> <span class="co"># Macierz dla znanych wartości [x1, x3, x4]</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>Ao <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>,</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>                <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), </span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>Ao <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, </span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>               <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a> <span class="co"># Wektor znanych wartości</span></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a> xo <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">40</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Wektor znanych wartości</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>xo <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">40</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
 <span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a> <span class="co"># Wektor wyrazów wolnych</span></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a> b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Wektor wyrazów wolnych</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
 <span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a> <span class="co"># Obliczamy prawą stronę równania</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a> right_side <span class="ot">&lt;-</span> b <span class="sc">-</span> Ao <span class="sc">%*%</span> xo</span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a> <span class="co"># Obliczamy rozwiązanie używając pseudoodwrotności Moore-Penrose</span></span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a> xm <span class="ot">&lt;-</span> <span class="fu">ginv</span>(Am) <span class="sc">%*%</span> right_side</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a> xm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Obliczamy prawą stronę równania</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>b_star <span class="ot">&lt;-</span> b <span class="sc">-</span> Ao <span class="sc">%*%</span> xo</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Rozwiązujemy używając pseudoodwrotności Moore-Penrose</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>x_m <span class="ot">&lt;-</span> <span class="fu">ginv</span>(Am) <span class="sc">%*%</span> b_star</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>x_m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1]
 [1,]   50
@@ -3445,8 +3444,8 @@ Name: liczba_pokoi, dtype: float64</code></pre>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>Ao <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>xo <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">10</span>, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>right_side <span class="ot">&lt;-</span> b <span class="sc">-</span> Ao <span class="sc">%*%</span> xo</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>xm <span class="ot">&lt;-</span> <span class="fu">solve</span>(Am, right_side)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>b_star <span class="ot">&lt;-</span> b <span class="sc">-</span> Ao <span class="sc">%*%</span> xo</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>xm <span class="ot">&lt;-</span> <span class="fu">solve</span>(Am, b_star)</span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>xm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1]
@@ -3485,28 +3484,24 @@ Name: liczba_pokoi, dtype: float64</code></pre>
 <span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.zeros(<span class="dv">2</span>)</span>
 <span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obliczamy prawą stronę równania</span></span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>right_side <span class="op">=</span> b <span class="op">-</span> np.dot(Ao, xo)</span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>b_star <span class="op">=</span> b <span class="op">-</span> np.dot(Ao, xo)</span>
 <span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obliczamy rozwiązanie używając pseudoodwrotności Moore-Penrose</span></span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>xm <span class="op">=</span> np.dot(pinv(Am), right_side)</span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>xm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>array([50., 60.])</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>right_side</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>x_m <span class="op">=</span> np.dot(pinv(Am), b_star)</span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>x_m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([50., 60.])</code></pre>
 </div>
 </div>
 <p>Przykład 2 z zajęć</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Am <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>],[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]])</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>Ao <span class="op">=</span> np.array([[<span class="dv">1</span>], [<span class="dv">2</span>]])</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>xo <span class="op">=</span> np.array([<span class="dv">10</span>])</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>])</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>right_side <span class="op">=</span> b <span class="op">-</span> np.dot(Ao, xo)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>xm <span class="op">=</span> np.linalg.solve(Am, right_side)</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>xm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Am <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>],[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]])</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>Ao <span class="op">=</span> np.array([[<span class="dv">1</span>], [<span class="dv">2</span>]])</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>xo <span class="op">=</span> np.array([<span class="dv">10</span>])</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>b_star <span class="op">=</span> b <span class="op">-</span> np.dot(Ao, xo)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>xm <span class="op">=</span> np.linalg.solve(Am, b_star)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>xm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([20., 30.])</code></pre>
 </div>
@@ -3523,10 +3518,10 @@ Name: liczba_pokoi, dtype: float64</code></pre>
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <p>Z wykorzystaniem pakietu <code>validate</code> i <code>deducorrect</code> (tylko R)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> validate<span class="sc">::</span><span class="fu">validator</span>(</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>      x1 <span class="sc">+</span> x2 <span class="sc">==</span> x3,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>      x4 <span class="sc">+</span> x5 <span class="sc">==</span> x1)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> validate<span class="sc">::</span><span class="fu">validator</span>(</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>      x1 <span class="sc">+</span> x2 <span class="sc">==</span> x3,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>      x4 <span class="sc">+</span> x5 <span class="sc">==</span> x1)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Object of class &#39;validator&#39; with 2 elements:
  V1: x1 + x2 == x3
@@ -3534,15 +3529,15 @@ Name: liczba_pokoi, dtype: float64</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">100</span>, <span class="at">x2=</span><span class="cn">NA_real_</span>, <span class="at">x3=</span><span class="dv">150</span>, <span class="at">x4 =</span> <span class="dv">40</span>, <span class="at">x5 =</span> <span class="cn">NA_real_</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">100</span>, <span class="at">x2=</span><span class="cn">NA_real_</span>, <span class="at">x3=</span><span class="dv">150</span>, <span class="at">x4 =</span> <span class="dv">40</span>, <span class="at">x5 =</span> <span class="cn">NA_real_</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x1 x2  x3 x4 x5
 1 100 NA 150 40 NA</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">impute_lr</span>(dat,v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">impute_lr</span>(dat,v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x1 x2  x3 x4 x5
 1 100 50 150 40 60</code></pre>
@@ -3551,29 +3546,29 @@ Name: liczba_pokoi, dtype: float64</code></pre>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>x1, x2, x3, x4, x5 <span class="op">=</span> symbols(<span class="st">&#39;x1 x2 x3 x4 x5&#39;</span>)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>eq1 <span class="op">=</span> Eq(x1 <span class="op">+</span> x2, x3)  <span class="co"># x1 + x2 = x3</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>eq2 <span class="op">=</span> Eq(x4 <span class="op">+</span> x5, x1)  <span class="co"># x4 + x5 = x1</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>known_values <span class="op">=</span> {</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>        x1: <span class="dv">100</span>,  <span class="co"># x1 = 100</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>        x4: <span class="dv">40</span>,   <span class="co"># x4 = 40</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>        x3: <span class="dv">150</span>   <span class="co"># x3 = 150</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzymy system równań</span></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>system <span class="op">=</span> [eq1.subs(known_values), eq2.subs(known_values)]</span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Rozwiązujemy system</span></span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> solve(system, [x2, x5])</span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>solution</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>x1, x2, x3, x4, x5 <span class="op">=</span> symbols(<span class="st">&#39;x1 x2 x3 x4 x5&#39;</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>eq1 <span class="op">=</span> Eq(x1 <span class="op">+</span> x2, x3)  <span class="co"># x1 + x2 = x3</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>eq2 <span class="op">=</span> Eq(x4 <span class="op">+</span> x5, x1)  <span class="co"># x4 + x5 = x1</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>known_values <span class="op">=</span> {</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>        x1: <span class="dv">100</span>,  <span class="co"># x1 = 100</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>        x4: <span class="dv">40</span>,   <span class="co"># x4 = 40</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>        x3: <span class="dv">150</span>   <span class="co"># x3 = 150</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzymy system równań</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>system <span class="op">=</span> [eq1.subs(known_values), eq2.subs(known_values)]</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Rozwiązujemy system</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> solve(system, [x2, x5])</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>solution</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{x2: 50, x5: 60}</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzymy pełne rozwiązanie dodając znane wartości</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>full_solution <span class="op">=</span> {<span class="op">**</span>known_values, <span class="op">**</span>solution}</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>full_solution</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzymy pełne rozwiązanie dodając znane wartości</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>full_solution <span class="op">=</span> {<span class="op">**</span>known_values, <span class="op">**</span>solution}</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>full_solution</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{x1: 100, x4: 40, x3: 150, x2: 50, x5: 60}</code></pre>
 </div>
