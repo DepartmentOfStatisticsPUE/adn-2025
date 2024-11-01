@@ -1,0 +1,12 @@
+name: missing-data-class1
+title: missing-data-class1
+username: berenz
+account: berenz
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13207157
+bundleId: 9303288
+url: https://berenz.shinyapps.io/missing-data-class1/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

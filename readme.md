@@ -6,6 +6,8 @@
 + Zaliczenie: projekt przez Kaggle
 + [Sylabus](https://esylabus.ue.poznan.pl/pl/document/8ba52650-091b-4852-9553-34fc9410f610.pdf)
 + [Slajdy](https://www.overleaf.com/read/kzydvvmfvtnq#32e3c2)
++ Shiny:
+  + [Wizualizacja imputacji danych 1](https://berenz.shinyapps.io/missing-data-class1/)
 
 ## Materiały na zajęcia
 
