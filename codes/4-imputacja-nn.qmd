@@ -253,7 +253,7 @@ dane = pd.DataFrame({
 ```
 
 
-## Przyklad 3
+# Przyklad 3
 
 ::: panel-tabset
 
@@ -263,6 +263,23 @@ dane = pd.DataFrame({
 ## reading
 data <- read.csv(file = "../data/data4-czytelnictwo.csv", 
                  colClasses = c("factor", "numeric", "factor", "logical", "logical"))
+
+```
+
+```{r}
+glm(I(is.na(czyta_ksiazki_z_brakami)) ~ plec + wiek + wyksztalcenie,
+    data = data) |> 
+  summary()
+```
+
+```{r}
+glm(czyta_ksiazki_z_brakami ~ plec + wiek + wyksztalcenie,
+    data = data,
+    subset = !is.na(czyta_ksiazki_z_brakami)) |> 
+  summary()
+```
+
+```{r}
 dd1 <- data |> 
   impute_knn(czyta_ksiazki_z_brakami ~ plec + wiek + wyksztalcenie, k = 5, backend = "simputation")
 
@@ -270,9 +287,10 @@ dd2 <- data |>
   impute_knn(czyta_ksiazki_z_brakami ~ plec + wiek + wyksztalcenie, k = 5, backend = "VIM")
 
 
+dd1$czyta_ksiazki |> table() |> prop.table() ## true
 dd1$czyta_ksiazki_z_brakami |> table() |> prop.table()
 dd2$czyta_ksiazki_z_brakami |> table() |> prop.table()
-dd1$czyta_ksiazki |> table() |> prop.table()
+
 ```
 
 Zmiana wykształcenia na ordinal
@@ -290,9 +308,10 @@ dd2 <- data |>
   impute_knn(czyta_ksiazki_z_brakami ~ plec + wiek + wyksztalcenie_f, k = 5, backend = "VIM")
 
 
+dd1$czyta_ksiazki |> table() |> prop.table() ## true
 dd1$czyta_ksiazki_z_brakami |> table() |> prop.table()
 dd2$czyta_ksiazki_z_brakami |> table() |> prop.table()
-dd1$czyta_ksiazki |> table() |> prop.table()
+
 ```
 
 ## Python

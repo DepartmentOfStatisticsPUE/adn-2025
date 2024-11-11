@@ -1,5 +1,5 @@
 # Set seed for reproducibility
-set.seed(123)
+set.seed(2024)
 
 # Generate basic variables
 n <- 1000
@@ -46,10 +46,10 @@ reading <- sapply(1:n, function(i) {
 missing_prob <- function(edu, age) {
   # Base probabilities for education levels (higher for lower education)
   edu_prob <- switch(edu,
-                     "brak" = 0.8,
-                     "podstawowe" = 0.65,
-                     "średnie" = 0.45,
-                     "wyższe" = 0.25
+                     "brak" = 0.6,
+                     "podstawowe" = 0.35,
+                     "średnie" = 0.2,
+                     "wyższe" = 0.1
   )
   
   # Age effect: increasing with age
@@ -65,11 +65,7 @@ missing_probs <- sapply(1:n, function(i) {
   missing_prob(education[i], age[i])
 })
 
-# Ensure exactly 50% missing values by selecting observations 
-# with highest probabilities of being missing
-n_missing <- n/2
-missing_indices <- order(missing_probs, decreasing = TRUE)[1:n_missing]
-
+missing_indices <- which(rbinom(n, 1, missing_probs) == 1)
 reading_with_missing <- reading
 reading_with_missing[missing_indices] <- NA
 
