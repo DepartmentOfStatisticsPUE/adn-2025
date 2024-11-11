@@ -42,3 +42,8 @@
     + Python: `fillna` z `pandas`
     + Zbiór danych na ćwiczenia [data3-zajecia-przyklad1.csv](data/data3-przyklad-imputacji.csv)
     + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/3-imputacja-dedukcyjna.html)
+
++ Imputacja metodą najbliższego sąsiada:
+    + R: `simputation`, `VIM`
+    + Python: `KNNImputer` z `sklearn.impute`
+    + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/4-imputacja-nn.html)
