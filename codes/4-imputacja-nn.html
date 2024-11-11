@@ -3085,7 +3085,11 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#wczytanie-potrzebych-pakietów" id="toc-wczytanie-potrzebych-pakietów" class="nav-link active" data-scroll-target="#wczytanie-potrzebych-pakietów"><span class="header-section-number">1</span> Wczytanie potrzebych pakietów</a></li>
-  <li><a href="#przykład-1" id="toc-przykład-1" class="nav-link" data-scroll-target="#przykład-1"><span class="header-section-number">2</span> Przykład 1</a></li>
+  <li><a href="#przykład-1-symulacja" id="toc-przykład-1-symulacja" class="nav-link" data-scroll-target="#przykład-1-symulacja"><span class="header-section-number">2</span> Przykład 1 – symulacja</a></li>
+  <li><a href="#przykład-2-gower" id="toc-przykład-2-gower" class="nav-link" data-scroll-target="#przykład-2-gower"><span class="header-section-number">3</span> Przykład 2 – Gower</a>
+  <ul class="collapse">
+  <li><a href="#przyklad-3" id="toc-przyklad-3" class="nav-link" data-scroll-target="#przyklad-3"><span class="header-section-number">3.1</span> Przyklad 3</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -3119,121 +3123,98 @@ vertical-align: -.125em;
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simputation)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: colorspace</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;colorspace&#39; was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: grid</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>VIM is ready to use.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Suggestions and bug-reports can be submitted at: https://github.com/statistikat/VIM/issues</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: &#39;VIM&#39;</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from &#39;package:datasets&#39;:
-
-    sleep</code></pre>
-</div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> KNNImputer</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> KNNImputer</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># import gower ## </span><span class="al">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="przykład-1" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Przykład 1</h1>
+<section id="przykład-1-symulacja" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Przykład 1 – symulacja</h1>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href>R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href>Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ustawienie ziarna losowości dla reprodukowalności</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parametry symulacji</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">50000</span>  <span class="co"># rozmiar populacji</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">400</span>    <span class="co"># rozmiar próby</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie zmiennych objaśniających</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>x4 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>x5 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>x6 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie zmiennej y dla trzech modeli</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> e</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">1.167</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> (x1<span class="fl">-0.5</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (x2<span class="fl">-0.5</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> e</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">1.5</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span> e</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie wskaźnika odpowiedzi (mechanizm braków danych)</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>logit_p <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">exp</span>(logit_p)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(logit_p))</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie ramki danych</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>populacja <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a> <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>N,</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a> <span class="at">x1 =</span> x1,</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a> <span class="at">x2 =</span> x2,</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a> <span class="at">x3 =</span> x3,</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a> <span class="at">x4 =</span> x4,</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a> <span class="at">x5 =</span> x5,</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a> <span class="at">x6 =</span> x6,</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a> <span class="at">y1 =</span> y1,</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a> <span class="at">y2 =</span> y2,</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a> <span class="at">y3 =</span> y3,</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a> <span class="at">p =</span> p</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>y_true <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(populacja[, <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>)]) </span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="do">## sumulacja (100 razy)</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">500</span></span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, R, <span class="dv">6</span>)</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(results) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;naive&quot;</span>, <span class="st">&quot;nn&quot;</span>), <span class="at">each =</span> <span class="dv">3</span>), <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;_y1&quot;</span>, <span class="st">&quot;_y2&quot;</span>, <span class="st">&quot;_y3&quot;</span>), <span class="at">times=</span><span class="dv">2</span>))</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>R) {</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>  proba <span class="ot">&lt;-</span> populacja[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N, n), ]</span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>delta <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="fu">nrow</span>(proba), <span class="dv">1</span>, proba<span class="sc">$</span>p)</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y1[proba<span class="sc">$</span>delta <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y2[proba<span class="sc">$</span>delta <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y3[proba<span class="sc">$</span>delta <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>  results[r, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(proba[, <span class="fu">c</span>(<span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>))], <span class="at">na.rm=</span>T)</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>  res_y1_y2 <span class="ot">&lt;-</span> <span class="fu">impute_knn</span>(proba, y1 <span class="sc">+</span> y2  <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">k=</span><span class="dv">5</span>)</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>  res_y3 <span class="ot">&lt;-</span> <span class="fu">impute_knn</span>(proba, y3  <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6, <span class="at">k=</span><span class="dv">5</span>)</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y1 <span class="ot">&lt;-</span> res_y1_y2<span class="sc">$</span>y1</span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y2 <span class="ot">&lt;-</span> res_y1_y2<span class="sc">$</span>y2</span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y3 <span class="ot">&lt;-</span> res_y3<span class="sc">$</span>y3</span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>  results[r, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(proba[, <span class="fu">c</span>(<span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>))], <span class="at">na.rm=</span>T)</span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(results <span class="sc">-</span> <span class="fu">rep</span>(y_true,<span class="at">times =</span> <span class="dv">2</span>), <span class="at">xlab =</span> <span class="st">&quot;Estymator&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Obciążenie&quot;</span>,</span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Wpływ liczby zmiennych w imputacji NN na obciązenie&quot;</span>) </span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ustawienie ziarna losowości dla reprodukowalności</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parametry symulacji</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">50000</span>  <span class="co"># rozmiar populacji</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">400</span>    <span class="co"># rozmiar próby</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie zmiennych objaśniających</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>x4 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>x5 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>x6 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie zmiennej y dla trzech modeli</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> e</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">1.167</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> (x1<span class="fl">-0.5</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (x2<span class="fl">-0.5</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> e</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">1.5</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span> e</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie wskaźnika odpowiedzi (mechanizm braków danych)</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>logit_p <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">exp</span>(logit_p)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(logit_p))</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie ramki danych</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>populacja <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a> <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>N,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a> <span class="at">x1 =</span> x1,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a> <span class="at">x2 =</span> x2,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a> <span class="at">x3 =</span> x3,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a> <span class="at">x4 =</span> x4,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a> <span class="at">x5 =</span> x5,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a> <span class="at">x6 =</span> x6,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a> <span class="at">y1 =</span> y1,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a> <span class="at">y2 =</span> y2,</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a> <span class="at">y3 =</span> y3,</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a> <span class="at">p =</span> p</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>y_true <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(populacja[, <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>)]) </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="do">## sumulacja (100 razy)</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, R, <span class="dv">6</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(results) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;naive&quot;</span>, <span class="st">&quot;nn&quot;</span>), <span class="at">each =</span> <span class="dv">3</span>), <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;_y1&quot;</span>, <span class="st">&quot;_y2&quot;</span>, <span class="st">&quot;_y3&quot;</span>), <span class="at">times=</span><span class="dv">2</span>))</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>R) {</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  proba <span class="ot">&lt;-</span> populacja[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N, n), ]</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>delta <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="fu">nrow</span>(proba), <span class="dv">1</span>, proba<span class="sc">$</span>p)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y1[proba<span class="sc">$</span>delta <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y2[proba<span class="sc">$</span>delta <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y3[proba<span class="sc">$</span>delta <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  results[r, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(proba[, <span class="fu">c</span>(<span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>))], <span class="at">na.rm=</span>T)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  res_y1_y2 <span class="ot">&lt;-</span> <span class="fu">impute_knn</span>(proba, y1 <span class="sc">+</span> y2  <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">k=</span><span class="dv">5</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  res_y3 <span class="ot">&lt;-</span> <span class="fu">impute_knn</span>(proba, y3  <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6, <span class="at">k=</span><span class="dv">5</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y1 <span class="ot">&lt;-</span> res_y1_y2<span class="sc">$</span>y1</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y2 <span class="ot">&lt;-</span> res_y1_y2<span class="sc">$</span>y2</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  proba<span class="sc">$</span>y3 <span class="ot">&lt;-</span> res_y3<span class="sc">$</span>y3</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  results[r, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(proba[, <span class="fu">c</span>(<span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>))], <span class="at">na.rm=</span>T)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(results <span class="sc">-</span> <span class="fu">rep</span>(y_true,<span class="at">times =</span> <span class="dv">2</span>), <span class="at">xlab =</span> <span class="st">&quot;Estymator&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Obciążenie&quot;</span>,</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Wpływ liczby zmiennych w imputacji NN na obciązenie&quot;</span>) </span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3245,94 +3226,94 @@ Attaching package: &#39;VIM&#39;</code></pre>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ustawienie ziarna losowości</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parametry symulacji</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">50000</span>  <span class="co"># rozmiar populacji</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">400</span>    <span class="co"># rozmiar próby</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie zmiennych objaśniających</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>x4 <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>x5 <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>x6 <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie zmiennej y dla trzech modeli</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">+</span> x1 <span class="op">+</span> x2 <span class="op">+</span> e</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> <span class="op">-</span><span class="fl">1.167</span> <span class="op">+</span> x1 <span class="op">+</span> x2 <span class="op">+</span> (x1<span class="op">-</span><span class="fl">0.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (x2<span class="op">-</span><span class="fl">0.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> e</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>y3 <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span> <span class="op">+</span> x1 <span class="op">+</span> x2 <span class="op">+</span> x3 <span class="op">+</span> x4 <span class="op">+</span> x5 <span class="op">+</span> x6 <span class="op">+</span> e</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie wskaźnika odpowiedzi</span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>logit_p <span class="op">=</span> <span class="fl">0.2</span> <span class="op">+</span> x1 <span class="op">+</span> x2</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.exp(logit_p)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> np.exp(logit_p))</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie ramki danych</span></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>populacja <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;id&#39;</span>: <span class="bu">range</span>(N),</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x1&#39;</span>: x1,</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x2&#39;</span>: x2,</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x3&#39;</span>: x3,</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x4&#39;</span>: x4,</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x5&#39;</span>: x5,</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x6&#39;</span>: x6,</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;y1&#39;</span>: y1,</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;y2&#39;</span>: y2,</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;y3&#39;</span>: y3,</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;p&#39;</span>: p</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> populacja[[<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]].mean()</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Symulacja (500 razy)</span></span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="dv">500</span></span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> np.zeros((R, <span class="dv">6</span>))</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="ss">f&quot;</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">&quot;</span> <span class="cf">for</span> t <span class="kw">in</span> [<span class="st">&#39;naive&#39;</span>, <span class="st">&#39;nn&#39;</span>] <span class="cf">for</span> y <span class="kw">in</span> [<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]]</span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(R):</span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Losowanie próby</span></span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>   proba <span class="op">=</span> populacja.sample(n<span class="op">=</span>n)</span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Generowanie braków danych</span></span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>   delta <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, proba[<span class="st">&#39;p&#39;</span>])</span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>   proba.loc[delta <span class="op">==</span> <span class="dv">0</span>, [<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]] <span class="op">=</span> np.nan</span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Średnie dla metody naiwnej</span></span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>   results[r, <span class="dv">0</span>:<span class="dv">3</span>] <span class="op">=</span> proba[[<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]].mean()</span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Imputacja KNN</span></span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>   imputer_y1_y2 <span class="op">=</span> KNNImputer(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>   imputer_y3 <span class="op">=</span> KNNImputer(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Imputacja dla y1, y2</span></span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>   y1_y2_imputed <span class="op">=</span> imputer_y1_y2.fit_transform(proba[[<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;x1&#39;</span>, <span class="st">&#39;x2&#39;</span>]])</span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>   proba[<span class="st">&#39;y1&#39;</span>] <span class="op">=</span> y1_y2_imputed[:, <span class="dv">0</span>]</span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>   proba[<span class="st">&#39;y2&#39;</span>] <span class="op">=</span> y1_y2_imputed[:, <span class="dv">1</span>]</span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Imputacja dla y3</span></span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>   y3_imputed <span class="op">=</span> imputer_y3.fit_transform(proba[[<span class="st">&#39;y3&#39;</span>, <span class="st">&#39;x1&#39;</span>, <span class="st">&#39;x2&#39;</span>, <span class="st">&#39;x3&#39;</span>, <span class="st">&#39;x4&#39;</span>, <span class="st">&#39;x5&#39;</span>, <span class="st">&#39;x6&#39;</span>]])</span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>   proba[<span class="st">&#39;y3&#39;</span>] <span class="op">=</span> y3_imputed[:, <span class="dv">0</span>]</span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Średnie po imputacji</span></span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>   results[r, <span class="dv">3</span>:<span class="dv">6</span>] <span class="op">=</span> proba[[<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]].mean()</span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>bias <span class="op">=</span> results <span class="op">-</span> np.tile(y_true, <span class="dv">2</span>)</span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>plt.boxplot(bias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ustawienie ziarna losowości</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parametry symulacji</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">50000</span>  <span class="co"># rozmiar populacji</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">400</span>    <span class="co"># rozmiar próby</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie zmiennych objaśniających</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>x4 <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>x5 <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>x6 <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Generowanie zmiennej y dla trzech modeli</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">+</span> x1 <span class="op">+</span> x2 <span class="op">+</span> e</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> <span class="op">-</span><span class="fl">1.167</span> <span class="op">+</span> x1 <span class="op">+</span> x2 <span class="op">+</span> (x1<span class="op">-</span><span class="fl">0.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (x2<span class="op">-</span><span class="fl">0.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> e</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>y3 <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span> <span class="op">+</span> x1 <span class="op">+</span> x2 <span class="op">+</span> x3 <span class="op">+</span> x4 <span class="op">+</span> x5 <span class="op">+</span> x6 <span class="op">+</span> e</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie wskaźnika odpowiedzi</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>logit_p <span class="op">=</span> <span class="fl">0.2</span> <span class="op">+</span> x1 <span class="op">+</span> x2</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.exp(logit_p)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> np.exp(logit_p))</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Tworzenie ramki danych</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>populacja <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;id&#39;</span>: <span class="bu">range</span>(N),</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x1&#39;</span>: x1,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x2&#39;</span>: x2,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x3&#39;</span>: x3,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x4&#39;</span>: x4,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x5&#39;</span>: x5,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;x6&#39;</span>: x6,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;y1&#39;</span>: y1,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;y2&#39;</span>: y2,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;y3&#39;</span>: y3,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;p&#39;</span>: p</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> populacja[[<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]].mean()</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Symulacja (500 razy)</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> np.zeros((R, <span class="dv">6</span>))</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="ss">f&quot;</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">&quot;</span> <span class="cf">for</span> t <span class="kw">in</span> [<span class="st">&#39;naive&#39;</span>, <span class="st">&#39;nn&#39;</span>] <span class="cf">for</span> y <span class="kw">in</span> [<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]]</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(R):</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Losowanie próby</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>   proba <span class="op">=</span> populacja.sample(n<span class="op">=</span>n)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Generowanie braków danych</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>   delta <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, proba[<span class="st">&#39;p&#39;</span>])</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>   proba.loc[delta <span class="op">==</span> <span class="dv">0</span>, [<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]] <span class="op">=</span> np.nan</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Średnie dla metody naiwnej</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>   results[r, <span class="dv">0</span>:<span class="dv">3</span>] <span class="op">=</span> proba[[<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]].mean()</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Imputacja KNN</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>   imputer_y1_y2 <span class="op">=</span> KNNImputer(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>   imputer_y3 <span class="op">=</span> KNNImputer(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Imputacja dla y1, y2</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>   y1_y2_imputed <span class="op">=</span> imputer_y1_y2.fit_transform(proba[[<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;x1&#39;</span>, <span class="st">&#39;x2&#39;</span>]])</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>   proba[<span class="st">&#39;y1&#39;</span>] <span class="op">=</span> y1_y2_imputed[:, <span class="dv">0</span>]</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>   proba[<span class="st">&#39;y2&#39;</span>] <span class="op">=</span> y1_y2_imputed[:, <span class="dv">1</span>]</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Imputacja dla y3</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>   y3_imputed <span class="op">=</span> imputer_y3.fit_transform(proba[[<span class="st">&#39;y3&#39;</span>, <span class="st">&#39;x1&#39;</span>, <span class="st">&#39;x2&#39;</span>, <span class="st">&#39;x3&#39;</span>, <span class="st">&#39;x4&#39;</span>, <span class="st">&#39;x5&#39;</span>, <span class="st">&#39;x6&#39;</span>]])</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>   proba[<span class="st">&#39;y3&#39;</span>] <span class="op">=</span> y3_imputed[:, <span class="dv">0</span>]</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Średnie po imputacji</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>   results[r, <span class="dv">3</span>:<span class="dv">6</span>] <span class="op">=</span> proba[[<span class="st">&#39;y1&#39;</span>, <span class="st">&#39;y2&#39;</span>, <span class="st">&#39;y3&#39;</span>]].mean()</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>bias <span class="op">=</span> results <span class="op">-</span> np.tile(y_true, <span class="dv">2</span>)</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>plt.boxplot(bias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x30056f290&gt;, &lt;matplotlib.lines.Line2D object at 0x30077b2d0&gt;, &lt;matplotlib.lines.Line2D object at 0x304005a10&gt;, &lt;matplotlib.lines.Line2D object at 0x304005dd0&gt;, &lt;matplotlib.lines.Line2D object at 0x30400c810&gt;, &lt;matplotlib.lines.Line2D object at 0x30400f150&gt;, &lt;matplotlib.lines.Line2D object at 0x304013dd0&gt;, &lt;matplotlib.lines.Line2D object at 0x304018850&gt;, &lt;matplotlib.lines.Line2D object at 0x3009fb950&gt;, &lt;matplotlib.lines.Line2D object at 0x304014b50&gt;, &lt;matplotlib.lines.Line2D object at 0x30400afd0&gt;, &lt;matplotlib.lines.Line2D object at 0x304008490&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x300996ed0&gt;, &lt;matplotlib.lines.Line2D object at 0x3009e6210&gt;, &lt;matplotlib.lines.Line2D object at 0x3009f4050&gt;, &lt;matplotlib.lines.Line2D object at 0x3009f59d0&gt;, &lt;matplotlib.lines.Line2D object at 0x30400ff90&gt;, &lt;matplotlib.lines.Line2D object at 0x30400f1d0&gt;, &lt;matplotlib.lines.Line2D object at 0x30401a390&gt;, &lt;matplotlib.lines.Line2D object at 0x30401b190&gt;, &lt;matplotlib.lines.Line2D object at 0x304016d10&gt;, &lt;matplotlib.lines.Line2D object at 0x3040155d0&gt;, &lt;matplotlib.lines.Line2D object at 0x30401c7d0&gt;, &lt;matplotlib.lines.Line2D object at 0x3009df0d0&gt;], &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D object at 0x300524e90&gt;, &lt;matplotlib.lines.Line2D object at 0x304004d90&gt;, &lt;matplotlib.lines.Line2D object at 0x304000e50&gt;, &lt;matplotlib.lines.Line2D object at 0x304013c50&gt;, &lt;matplotlib.lines.Line2D object at 0x3009f9a50&gt;, &lt;matplotlib.lines.Line2D object at 0x30400b210&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x3009e7010&gt;, &lt;matplotlib.lines.Line2D object at 0x304002190&gt;, &lt;matplotlib.lines.Line2D object at 0x304010910&gt;, &lt;matplotlib.lines.Line2D object at 0x3009d03d0&gt;, &lt;matplotlib.lines.Line2D object at 0x304014350&gt;, &lt;matplotlib.lines.Line2D object at 0x3009dc690&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x304004250&gt;, &lt;matplotlib.lines.Line2D object at 0x304003c50&gt;, &lt;matplotlib.lines.Line2D object at 0x304011650&gt;, &lt;matplotlib.lines.Line2D object at 0x3009d2690&gt;, &lt;matplotlib.lines.Line2D object at 0x3040099d0&gt;, &lt;matplotlib.lines.Line2D object at 0x304054fd0&gt;], &#39;means&#39;: []}</code></pre>
+<pre><code>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x16824d050&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9cebd0&gt;, &lt;matplotlib.lines.Line2D object at 0x30080c610&gt;, &lt;matplotlib.lines.Line2D object at 0x30080e3d0&gt;, &lt;matplotlib.lines.Line2D object at 0x300808cd0&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9f5e50&gt;, &lt;matplotlib.lines.Line2D object at 0x300805150&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9f8590&gt;, &lt;matplotlib.lines.Line2D object at 0x300814250&gt;, &lt;matplotlib.lines.Line2D object at 0x300815e90&gt;, &lt;matplotlib.lines.Line2D object at 0x30081c5d0&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9dd410&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x16e970410&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9e45d0&gt;, &lt;matplotlib.lines.Line2D object at 0x30080d1d0&gt;, &lt;matplotlib.lines.Line2D object at 0x30080f010&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9f73d0&gt;, &lt;matplotlib.lines.Line2D object at 0x300804410&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9f8090&gt;, &lt;matplotlib.lines.Line2D object at 0x300811310&gt;, &lt;matplotlib.lines.Line2D object at 0x300814ad0&gt;, &lt;matplotlib.lines.Line2D object at 0x300816310&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9dc790&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9d0790&gt;], &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D object at 0x16e9557d0&gt;, &lt;matplotlib.lines.Line2D object at 0x300803790&gt;, &lt;matplotlib.lines.Line2D object at 0x300809750&gt;, &lt;matplotlib.lines.Line2D object at 0x300804090&gt;, &lt;matplotlib.lines.Line2D object at 0x300813010&gt;, &lt;matplotlib.lines.Line2D object at 0x30081b5d0&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x3008008d0&gt;, &lt;matplotlib.lines.Line2D object at 0x3008087d0&gt;, &lt;matplotlib.lines.Line2D object at 0x300806550&gt;, &lt;matplotlib.lines.Line2D object at 0x300811390&gt;, &lt;matplotlib.lines.Line2D object at 0x300818110&gt;, &lt;matplotlib.lines.Line2D object at 0x16e9d3010&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x300803990&gt;, &lt;matplotlib.lines.Line2D object at 0x300808250&gt;, &lt;matplotlib.lines.Line2D object at 0x300806910&gt;, &lt;matplotlib.lines.Line2D object at 0x3008129d0&gt;, &lt;matplotlib.lines.Line2D object at 0x300819d10&gt;, &lt;matplotlib.lines.Line2D object at 0x300851750&gt;], &#39;means&#39;: []}</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;r&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;-&#39;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Estymator&#39;</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Obciążenie&#39;</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Wpływ liczby zmiennych w imputacji NN na obciążenie&#39;</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">7</span>), columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;r&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;-&#39;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Estymator&#39;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Obciążenie&#39;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Wpływ liczby zmiennych w imputacji NN na obciążenie&#39;</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">7</span>), columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>([&lt;matplotlib.axis.XTick object at 0x300996c90&gt;, &lt;matplotlib.axis.XTick object at 0x3009d1d90&gt;, &lt;matplotlib.axis.XTick object at 0x3040124d0&gt;, &lt;matplotlib.axis.XTick object at 0x300986250&gt;, &lt;matplotlib.axis.XTick object at 0x3040a97d0&gt;, &lt;matplotlib.axis.XTick object at 0x3009d0810&gt;], [Text(1, 0, &#39;naive_y1&#39;), Text(2, 0, &#39;naive_y2&#39;), Text(3, 0, &#39;naive_y3&#39;), Text(4, 0, &#39;nn_y1&#39;), Text(5, 0, &#39;nn_y2&#39;), Text(6, 0, &#39;nn_y3&#39;)])</code></pre>
+<pre><code>([&lt;matplotlib.axis.XTick object at 0x300812610&gt;, &lt;matplotlib.axis.XTick object at 0x16e9f6bd0&gt;, &lt;matplotlib.axis.XTick object at 0x300847850&gt;, &lt;matplotlib.axis.XTick object at 0x300822010&gt;, &lt;matplotlib.axis.XTick object at 0x3008a9750&gt;, &lt;matplotlib.axis.XTick object at 0x300800c90&gt;], [Text(1, 0, &#39;naive_y1&#39;), Text(2, 0, &#39;naive_y2&#39;), Text(3, 0, &#39;naive_y3&#39;), Text(4, 0, &#39;nn_y1&#39;), Text(5, 0, &#39;nn_y2&#39;), Text(6, 0, &#39;nn_y3&#39;)])</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3344,6 +3325,139 @@ Attaching package: &#39;VIM&#39;</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="przykład-2-gower" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Przykład 2 – Gower</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href>R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href>Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">plec =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;K&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;K&quot;</span>)),                     <span class="co"># zmienna nominalna</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">wyksztalcenie =</span> <span class="fu">factor</span>(                              <span class="co"># zmienna porządkowa</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="st">&quot;wyższe&quot;</span>, <span class="st">&quot;średnie&quot;</span>, <span class="st">&quot;podstawowe&quot;</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;podstawowe&quot;</span>, <span class="st">&quot;średnie&quot;</span>, <span class="st">&quot;wyższe&quot;</span>),   <span class="co"># określamy porządek poziomów</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>   ),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">wiek =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">35</span>, <span class="dv">45</span>)                                 <span class="co"># zmienna ilorazowa</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">gowerD</span>(<span class="at">data.x =</span> dane,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">factors =</span> <span class="st">&quot;plec&quot;</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">numerical =</span> <span class="st">&quot;wiek&quot;</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">orders =</span> <span class="st">&quot;wyksztalcenie&quot;</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">levOrders =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]      [,2]      [,3]
+[1,] 0.0000000 0.6666667 0.6666667
+[2,] 0.6666667 0.0000000 0.6666667
+[3,] 0.6666667 0.6666667 0.0000000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gower<span class="sc">::</span><span class="fu">gower_dist</span>(<span class="at">x =</span> dane[<span class="dv">1</span>, ],</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> dane[<span class="dv">2</span>, ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dane <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;plec&#39;</span>: pd.Categorical([<span class="st">&quot;K&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;K&quot;</span>]),                          <span class="co"># zmienna nominalna</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;wyksztalcenie&#39;</span>: pd.Categorical(                                  <span class="co"># zmienna porządkowa</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>       [<span class="st">&quot;wyższe&quot;</span>, <span class="st">&quot;średnie&quot;</span>, <span class="st">&quot;podstawowe&quot;</span>],</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       categories<span class="op">=</span>[<span class="st">&quot;podstawowe&quot;</span>, <span class="st">&quot;średnie&quot;</span>, <span class="st">&quot;wyższe&quot;</span>],</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>       ordered<span class="op">=</span><span class="va">True</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>   ),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>   <span class="st">&#39;wiek&#39;</span>: [<span class="dv">25</span>, <span class="dv">35</span>, <span class="dv">45</span>]                                             <span class="co"># zmienna ilorazowa</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="przyklad-3" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="przyklad-3"><span class="header-section-number">3.1</span> Przyklad 3</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href>R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href>Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## reading</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&quot;../data/data4-czytelnictwo.csv&quot;</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colClasses =</span> <span class="fu">c</span>(<span class="st">&quot;factor&quot;</span>, <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;factor&quot;</span>, <span class="st">&quot;logical&quot;</span>, <span class="st">&quot;logical&quot;</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dd1 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">impute_knn</span>(czyta_ksiazki_z_brakami <span class="sc">~</span> plec <span class="sc">+</span> wiek <span class="sc">+</span> wyksztalcenie, <span class="at">k =</span> <span class="dv">5</span>, <span class="at">backend =</span> <span class="st">&quot;simputation&quot;</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>dd2 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">impute_knn</span>(czyta_ksiazki_z_brakami <span class="sc">~</span> plec <span class="sc">+</span> wiek <span class="sc">+</span> wyksztalcenie, <span class="at">k =</span> <span class="dv">5</span>, <span class="at">backend =</span> <span class="st">&quot;VIM&quot;</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>dd1<span class="sc">$</span>czyta_ksiazki_z_brakami <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+0.158 0.842 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dd2<span class="sc">$</span>czyta_ksiazki_z_brakami <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+0.086 0.914 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dd1<span class="sc">$</span>czyta_ksiazki <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+0.262 0.738 </code></pre>
+</div>
+</div>
+<p>Zmiana wykształcenia na ordinal</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>wyksztalcenie_f <span class="ot">&lt;-</span> <span class="fu">as.ordered</span>(data<span class="sc">$</span>wyksztalcenie)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(data<span class="sc">$</span>wyksztalcenie_f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;brak&quot;       &quot;podstawowe&quot; &quot;średnie&quot;    &quot;wyższe&quot;    </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dd1 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">impute_knn</span>(czyta_ksiazki_z_brakami <span class="sc">~</span> plec <span class="sc">+</span> wiek <span class="sc">+</span> wyksztalcenie_f, <span class="at">k =</span> <span class="dv">5</span>, <span class="at">backend =</span> <span class="st">&quot;simputation&quot;</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>dd2 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">impute_knn</span>(czyta_ksiazki_z_brakami <span class="sc">~</span> plec <span class="sc">+</span> wiek <span class="sc">+</span> wyksztalcenie_f, <span class="at">k =</span> <span class="dv">5</span>, <span class="at">backend =</span> <span class="st">&quot;VIM&quot;</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>dd1<span class="sc">$</span>czyta_ksiazki_z_brakami <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+0.159 0.841 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>dd2<span class="sc">$</span>czyta_ksiazki_z_brakami <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+  0.1   0.9 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dd1<span class="sc">$</span>czyta_ksiazki <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+0.262 0.738 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+
+</div>
+</div>
+</div>
+</section>
 </section>
 
 </main>

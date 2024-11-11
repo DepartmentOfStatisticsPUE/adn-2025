@@ -14,7 +14,7 @@ editor: source
 ::: panel-tabset
 ## R
 
-```{r pakiety}
+```{r pakiety, message=F, warning=F}
 library(simputation)
 library(VIM)
 ```
@@ -28,11 +28,12 @@ import pandas as pd
 from scipy.stats import norm
 from sklearn.impute import KNNImputer
 import matplotlib.pyplot as plt
+# import gower ## TODO
 ```
 
 :::
 
-# Przykład 1
+# Przykład 1 -- symulacja
 
 ::: panel-tabset
 
@@ -113,7 +114,7 @@ abline(a=0,b=0,col="red")
 
 ## Python
 
-```{python symulacja1}
+```{python symulacja1-py}
 # Ustawienie ziarna losowości
 np.random.seed(123)
 
@@ -199,4 +200,100 @@ plt.show()
 ```
 
 
+:::
+
+
+# Przykład 2 -- Gower
+
+::: panel-tabset
+
+## R
+
+```{r data-example2}
+dane <- data.frame(
+   plec = factor(c("K", "M", "K")),                     # zmienna nominalna
+   wyksztalcenie = factor(                              # zmienna porządkowa
+       c("wyższe", "średnie", "podstawowe"),
+       levels = c("podstawowe", "średnie", "wyższe"),   # określamy porządek poziomów
+       ordered = TRUE
+   ),
+   wiek = c(25, 35, 45)                                 # zmienna ilorazowa
+)
+
+```
+
+```{r gower}
+VIM::gowerD(data.x = dane,
+            factors = "plec",
+            numerical = "wiek",
+            orders = "wyksztalcenie",
+            levOrders = 3)
+
+```
+
+```{r gower2}
+gower::gower_dist(x = dane[1, ],
+                  y = dane[2, ])
+```
+
+## Python
+:::
+
+```{python}
+dane = pd.DataFrame({
+   'plec': pd.Categorical(["K", "M", "K"]),                          # zmienna nominalna
+   'wyksztalcenie': pd.Categorical(                                  # zmienna porządkowa
+       ["wyższe", "średnie", "podstawowe"],
+       categories=["podstawowe", "średnie", "wyższe"],
+       ordered=True
+   ),
+   'wiek': [25, 35, 45]                                             # zmienna ilorazowa
+})
+
+```
+
+
+## Przyklad 3
+
+::: panel-tabset
+
+## R
+
+```{r}
+## reading
+data <- read.csv(file = "../data/data4-czytelnictwo.csv", 
+                 colClasses = c("factor", "numeric", "factor", "logical", "logical"))
+dd1 <- data |> 
+  impute_knn(czyta_ksiazki_z_brakami ~ plec + wiek + wyksztalcenie, k = 5, backend = "simputation")
+
+dd2 <- data |> 
+  impute_knn(czyta_ksiazki_z_brakami ~ plec + wiek + wyksztalcenie, k = 5, backend = "VIM")
+
+
+dd1$czyta_ksiazki_z_brakami |> table() |> prop.table()
+dd2$czyta_ksiazki_z_brakami |> table() |> prop.table()
+dd1$czyta_ksiazki |> table() |> prop.table()
+```
+
+Zmiana wykształcenia na ordinal
+
+```{r}
+data$wyksztalcenie_f <- as.ordered(data$wyksztalcenie)
+levels(data$wyksztalcenie_f)
+```
+
+```{r}
+dd1 <- data |> 
+  impute_knn(czyta_ksiazki_z_brakami ~ plec + wiek + wyksztalcenie_f, k = 5, backend = "simputation")
+
+dd2 <- data |> 
+  impute_knn(czyta_ksiazki_z_brakami ~ plec + wiek + wyksztalcenie_f, k = 5, backend = "VIM")
+
+
+dd1$czyta_ksiazki_z_brakami |> table() |> prop.table()
+dd2$czyta_ksiazki_z_brakami |> table() |> prop.table()
+dd1$czyta_ksiazki |> table() |> prop.table()
+```
+
+## Python
 :::
