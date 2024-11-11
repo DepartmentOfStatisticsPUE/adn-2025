@@ -46,4 +46,5 @@
 + Imputacja metodą najbliższego sąsiada:
     + R: `simputation`, `VIM`
     + Python: `KNNImputer` z `sklearn.impute`
+    + Zbiór danych na ćwiczenia [data4-czytelnictwo.csv](data/data4-czytelnictwo.csv)
     + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/4-imputacja-nn.html)
