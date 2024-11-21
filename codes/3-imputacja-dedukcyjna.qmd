@@ -37,7 +37,7 @@ from sympy import symbols, solve, Eq
 :::
 
 
-# Przykład imptuacji dedukcyjnej
+# Przykład imputacji dedukcyjnej
 
 Dane są posortowane wg liczby pokoi (`liczba_pokoi`) i zawierają następujące kolumny:
 
