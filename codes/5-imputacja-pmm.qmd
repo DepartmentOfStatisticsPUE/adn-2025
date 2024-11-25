@@ -52,7 +52,7 @@ przyklad1 |>
              predictor = impute_lm)
 ```
 
-Step-by-step
+Step-by-step (dla $k=1$)
 
 ```{r}
 ## model liniowy
@@ -64,8 +64,24 @@ sasiedzi <- get.knnx(data = przyklad1[!is.na(przyklad1$Y), "pred"],
                      query = przyklad1[is.na(przyklad1$Y), "pred"],
                      k = 1)
 ## przepisujemy wartości najbliższego sąsiada
-przyklad1[is.na(przyklad1$Y), "Y"] <- przyklad1[!is.na(przyklad1$Y), "Y"][sasiedzi$nn.index[,1]]
-przyklad1
+przyklad1_wynik <- przyklad1
+przyklad1_wynik[is.na(przyklad1$Y), "Y"] <- przyklad1_wynik[!is.na(przyklad1$Y), "Y"][sasiedzi$nn.index[,1]]
+przyklad1_wynik
+```
+
+Step-by-step (dla $k=2$)
+
+```{r}
+## wyszukiwanie najbliższego sąsiada
+sasiedzi <- get.knnx(data = przyklad1[!is.na(przyklad1$Y), "pred"], 
+                     query = przyklad1[is.na(przyklad1$Y), "pred"],
+                     k = 2)
+sasiedzi
+## przepisujemy wartości najbliższego sąsiada
+
+przyklad1_wynik <- przyklad1
+przyklad1_wynik[is.na(przyklad1$Y), "Y"] <- apply(sasiedzi$nn.index, 1, FUN=function(x) mean(przyklad1_wynik[!is.na(przyklad1$Y), "Y"][x]))
+przyklad1_wynik
 ```
 
 ## Python
@@ -276,7 +292,7 @@ set.seed(123)
 
 # Parametry symulacji
 N <- 50000  # rozmiar populacji
-n <- 1000    # rozmiar próby
+n <- 400    # rozmiar próby
 
 # Generowanie zmiennych objaśniających
 x1 <- runif(N, 0, 1)
@@ -313,13 +329,14 @@ populacja <- data.frame(
 )
 y_true <- colMeans(populacja[, c("y1", "y2", "y3")]) 
 
-## sumulacja (500 razy)
-R <- 500
+## sumulacja (2000 razy)
+R <- 2000
 results <- matrix(0, R, 9)
 colnames(results) <- paste0(rep(c("naive", "nn", "pmm"), each = 3), 
                             rep(c("_y1", "_y2", "_y3"), times=3))
 
 for (r in 1:R) {
+  set.seed(r)
   proba <- populacja[sample(1:N, n), ]
   proba$delta <- rbinom(nrow(proba), 1, proba$p)
   proba$y1[proba$delta == 0] <- NA
@@ -341,7 +358,7 @@ for (r in 1:R) {
   proba$pred_y3 <- predict(model1, proba)
   nn_results <- get.knnx(data = proba[!is.na(proba$y3), "pred_y3"], 
                          query = proba[is.na(proba$y3), "pred_y3"],
-                         k = 5)
+                         k = 1)
 
   
   proba$y1_nn <- results_nn$y1
@@ -356,7 +373,14 @@ for (r in 1:R) {
    
 }
 
-boxplot(results - rep(y_true, times = 3), xlab = "Estymator", ylab = "Obciążenie",
+boxplot(results - matrix(rep(y_true, times = 3), byrow=T, ncol = 9, nrow=R), 
+        xlab = "Estymator", ylab = "Obciążenie",
         main = "Wpływ liczby zmiennych w imputacji NN na obciązenie") 
 abline(a=0,b=0,col="red")
 ```
+Obciążenie
+
+```{r}
+(colMeans(results) - rep(y_true, times = 3))*100
+```
+

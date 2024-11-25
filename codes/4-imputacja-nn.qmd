@@ -107,7 +107,8 @@ for (r in 1:R) {
    
 }
 
-boxplot(results - rep(y_true,times = 2), xlab = "Estymator", ylab = "Obciążenie",
+boxplot(results -  matrix(rep(y_true, times = 2), byrow=T, ncol = 6, nrow=R),  
+        xlab = "Estymator", ylab = "Obciążenie",
         main = "Wpływ liczby zmiennych w imputacji NN na obciązenie") 
 abline(a=0,b=0,col="red")
 ```
