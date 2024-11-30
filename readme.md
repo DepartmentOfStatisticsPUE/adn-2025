@@ -56,6 +56,9 @@
   + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/5-imputacja-pmm.html)
 
 + Imputacja wielokrotna
+  + R: [`mice`](https://github.com/amices/mice), [`rMIDAS`](https://cran.r-project.org/web/packages/rMIDAS/index.html)
+  + Python: `IterativeImputer` (from `sklearn.impute`), [`MIDASpy`](https://github.com/MIDASverse/MIDASpy)
+  + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/6-imputacja-mi.html)
 
 + Imputacja regresyjna
 

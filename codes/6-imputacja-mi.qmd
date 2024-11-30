@@ -1,0 +1,182 @@
+---
+title: "5. Imputacja wielokrotna"
+format: 
+  html:
+    self-contained: true
+    number-sections: true
+    toc: true
+    toc-title: "Spis treści"
+editor: source
+---
+
+# Wczytanie potrzebych pakietów
+
+::: panel-tabset
+## R
+
+```{r}
+library(mice)
+```
+
+## Python
+
+```{python}
+import pandas as pd
+import numpy as np
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+from sklearn.linear_model import LinearRegression
+import random
+```
+
+
+:::
+
+# Przykład 1 z zajęć
+
+::: panel-tabset
+## R
+
+Przykładowe dane 
+
+```{r}
+df_example <- data.frame(
+  A = seq(1:10)*2, 
+  B = 5 + seq(1:10)*2 + 10*rnorm(10), 
+  C = 2+sqrt(seq(1:10)) + rnorm(10)
+)
+df_example_miss <- df_example
+df_example_miss$A[c(2,5)] <- NA
+df_example_miss$B[c(1,2,8)] <- NA
+df_example_miss$C[c(9,10)] <- NA
+df_example_miss
+```
+
+Imputacja z wykorzystaniem metody wielokrotnej imputacji
+
+```{r}
+df_example_imp <- mice(df_example_miss, m=1)
+```
+
+Informacja dotycząca metody i zależności w danych
+
+```{r}
+df_example_imp
+```
+
+Pełny zbiór danych
+
+```{r}
+complete(df_example_imp)
+```
+
+Podsumowanie średnich
+
+```{r}
+colMeans(df_example)
+colMeans(df_example_miss, na.rm=T)
+colMeans(complete(df_example_imp))
+```
+
+Zmiany:
+
+- zwiększamy liczbę zbiorów
+- określamy inną metodę
+- okreslamy zależnosci w danych (B i C zależne tylko od A)
+
+```{r}
+pred_mat <- df_example_imp$predictorMatrix
+pred_mat["C", "B"] <- 0
+pred_mat["B", "C"] <- 0
+pred_mat
+```
+
+
+
+```{r}
+df_example_imp <- mice(data = df_example_miss, 
+                       m=4, 
+                       method = "norm.predict", 
+                       predictorMatrix = pred_mat)
+```
+
+
+```{r}
+df_example_imp
+```
+
+```{r}
+complete(df_example_imp, 1)
+complete(df_example_imp, 3)
+```
+
+```{r}
+sapply(complete(df_example_imp, "all"), colMeans)
+```
+
+Regresja
+
+```{r}
+lm_results <- with(df_example_imp, lm(C ~ A))
+str(lm_results,1)
+```
+
+```{r}
+pool(lm_results)
+```
+
+```{r}
+summary(pool(lm_results))
+```
+
+```{r}
+coef(summary(lm(C~A, df_example)))
+coef(summary(lm(C~A, df_example_miss)))
+```
+
+## Python
+
+```{python}
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Create original dataframe
+df_example = pd.DataFrame({
+    'A': np.arange(1, 11) * 2,
+    'B': 5 + np.arange(1, 11) * 2 + 10 * np.random.normal(size=10),
+    'C': 2 + np.sqrt(np.arange(1, 11)) + np.random.normal(size=10)
+})
+
+# Create copy with missing values
+df_example_miss = df_example.copy()
+df_example_miss.loc[[1, 4], 'A'] = np.nan  # R indices 2,5
+df_example_miss.loc[[0, 1, 7], 'B'] = np.nan  # R indices 1,2,8
+df_example_miss.loc[[8, 9], 'C'] = np.nan  # R indices 9,10
+df_example_miss
+```
+
+```{python}
+imp = IterativeImputer(random_state=42, max_iter=10, n_nearest_features=None)
+df_example_imp_single = pd.DataFrame(
+    imp.fit_transform(df_example_miss),
+    columns=df_example_miss.columns
+)
+
+df_example_imp_single
+```
+
+```{python}
+lr = LinearRegression()
+imp = IterativeImputer(estimator=lr, verbose=2, max_iter=5, tol=1e-10, imputation_order='roman')
+ImputedData=imp.fit_transform(df_example_miss)
+Imputed_data = pd.DataFrame(ImputedData)
+Imputed_data
+```
+
+:::
+
+
+## Ćwiczenie na zajęcia
+
+
+
