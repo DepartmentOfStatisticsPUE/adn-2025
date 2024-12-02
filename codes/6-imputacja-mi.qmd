@@ -16,6 +16,8 @@ editor: source
 
 ```{r, message = FALSE, warning=FALSE}
 library(mice)
+#library(rMIDAS)
+#set_python_env(x = "/opt/homebrew/bin/python3.10")
 ```
 
 ## Python
@@ -191,8 +193,49 @@ Imputed_data.mean()
 
 :::
 
+# Przyklad użycia pakietu `MIDAS`
 
-## Ćwiczenie na zajęcia
+```{r ,eval=FALSE}
+adult <- read.csv("https://raw.githubusercontent.com/MIDASverse/MIDASpy/master/Examples/adult_data.csv",row.names = 1)[1:1000,]
+```
+
+```{r ,eval=FALSE}
+set.seed(89)
+adult <- add_missingness(adult, prop = 0.1)
+```
+
+```{r ,eval=FALSE}
+adult_cat <- c('workclass','marital_status','relationship','race','education','occupation','native_country')
+adult_bin <- c('sex','class_labels')
+
+# Apply rMIDAS preprocessing steps
+adult_conv <- convert(adult, 
+                      bin_cols = adult_bin, 
+                      cat_cols = adult_cat,
+                      minmax_scale = TRUE)
+```
+
+```{r ,eval=FALSE}
+adult_train <- train(adult_conv,
+                       training_epochs = 20,
+                       layer_structure = c(128,128),
+                       input_drop = 0.75,
+                       seed = 89)
+```
+
+```{r ,eval=FALSE}
+adult_complete <- complete(adult_train, m = 10)
+```
+
+```{r ,eval=FALSE}
+adult_model <- combine("class_labels ~ hours_per_week + sex", 
+                    adult_complete,
+                    family = stats::binomial)
+
+adult_model
+```
+
+# Ćwiczenie na zajęcia
 
 1. Proszę wczytać zbiór danych na potrzeby projektu.
 2. Proszę zaimputować dane dla wybranych zmiennych wykorzystując metodę `mi`.

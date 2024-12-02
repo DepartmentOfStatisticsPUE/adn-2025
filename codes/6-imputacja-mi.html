@@ -3085,10 +3085,9 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#wczytanie-potrzebych-pakietów" id="toc-wczytanie-potrzebych-pakietów" class="nav-link active" data-scroll-target="#wczytanie-potrzebych-pakietów"><span class="header-section-number">1</span> Wczytanie potrzebych pakietów</a></li>
-  <li><a href="#przykład-1-z-zajęć" id="toc-przykład-1-z-zajęć" class="nav-link" data-scroll-target="#przykład-1-z-zajęć"><span class="header-section-number">2</span> Przykład 1 z zajęć</a>
-  <ul class="collapse">
-  <li><a href="#ćwiczenie-na-zajęcia" id="toc-ćwiczenie-na-zajęcia" class="nav-link" data-scroll-target="#ćwiczenie-na-zajęcia"><span class="header-section-number">2.1</span> Ćwiczenie na zajęcia</a></li>
-  </ul></li>
+  <li><a href="#przykład-1-z-zajęć" id="toc-przykład-1-z-zajęć" class="nav-link" data-scroll-target="#przykład-1-z-zajęć"><span class="header-section-number">2</span> Przykład 1 z zajęć</a></li>
+  <li><a href="#przyklad-użycia-pakietu-midas" id="toc-przyklad-użycia-pakietu-midas" class="nav-link" data-scroll-target="#przyklad-użycia-pakietu-midas"><span class="header-section-number">3</span> Przyklad użycia pakietu <code>MIDAS</code></a></li>
+  <li><a href="#ćwiczenie-na-zajęcia" id="toc-ćwiczenie-na-zajęcia" class="nav-link" data-scroll-target="#ćwiczenie-na-zajęcia"><span class="header-section-number">4</span> Ćwiczenie na zajęcia</a></li>
   </ul>
 </nav>
 </div>
@@ -3120,7 +3119,9 @@ vertical-align: -.125em;
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#library(rMIDAS)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#set_python_env(x = &quot;/opt/homebrew/bin/python3.10&quot;)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -3157,26 +3158,26 @@ vertical-align: -.125em;
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>df_example_miss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    A         B        C
-1   2        NA 4.229771
-2  NA        NA 1.684276
-3   6 15.024514 3.856439
-4   8 23.543931 2.465899
-5  NA 23.265500 3.922842
-6  12 19.296970 2.303615
-7  14  4.287294 5.264534
-8  16        NA 5.706605
-9  18 31.555532       NA
-10 20 13.440938       NA
-11 22 35.002411 4.726870
-12 24 24.001624 6.177767
-13 NA 25.408447 5.905812
-14 28 31.024667       NA
-15 30 49.296267       NA
-16 32 32.417902       NA
-17 34 43.846257       NA
-18 36 37.476944       NA
-19 38 53.701805 5.748807
-20 40        NA 5.871215</code></pre>
+1   2        NA 3.752460
+2  NA        NA 5.355133
+3   6 23.681043 4.935863
+4   8  5.720679 4.406310
+5  NA -5.303889 4.840963
+6  12 17.362622 2.919388
+7  14 15.958894 3.897667
+8  16        NA 4.159740
+9  18 24.283456       NA
+10 20 23.793140       NA
+11 22 22.720973 5.840588
+12 24 14.981815 6.142353
+13 NA 43.319639 8.441927
+14 28 24.401859       NA
+15 30 34.959526       NA
+16 32 39.660040       NA
+17 34 40.534582       NA
+18 36 42.134862       NA
+19 38 33.472003 7.415746
+20 40        NA 8.000331</code></pre>
 </div>
 </div>
 <p>Imputacja z wykorzystaniem metody wielokrotnej imputacji</p>
@@ -3213,44 +3214,44 @@ C 1 1 0</code></pre>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    A         B        C
-1   2 31.555532 4.229771
-2   2 23.543931 1.684276
-3   6 15.024514 3.856439
-4   8 23.543931 2.465899
-5  14 23.265500 3.922842
-6  12 19.296970 2.303615
-7  14  4.287294 5.264534
-8  16 23.543931 5.706605
-9  18 31.555532 2.303615
-10 20 13.440938 5.871215
-11 22 35.002411 4.726870
-12 24 24.001624 6.177767
-13 16 25.408447 5.905812
-14 28 31.024667 6.177767
-15 30 49.296267 5.706605
-16 32 32.417902 5.748807
-17 34 43.846257 5.748807
-18 36 37.476944 6.177767
-19 38 53.701805 5.748807
-20 40 49.296267 5.871215</code></pre>
+1   2 15.958894 3.752460
+2  14 14.981815 5.355133
+3   6 23.681043 4.935863
+4   8  5.720679 4.406310
+5  16 -5.303889 4.840963
+6  12 17.362622 2.919388
+7  14 15.958894 3.897667
+8  16  5.720679 4.159740
+9  18 24.283456 5.840588
+10 20 23.793140 6.142353
+11 22 22.720973 5.840588
+12 24 14.981815 6.142353
+13 32 43.319639 8.441927
+14 28 24.401859 6.142353
+15 30 34.959526 6.142353
+16 32 39.660040 7.415746
+17 34 40.534582 6.142353
+18 36 42.134862 7.415746
+19 38 33.472003 7.415746
+20 40 33.472003 8.000331</code></pre>
 </div>
 </div>
 <p>Podsumowanie średnich</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(df_example) <span class="do">## bez braków</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       A        B        C 
-21.00000 28.12490  4.95669 </code></pre>
+<pre><code>      A       B       C 
+21.0000 23.2210  5.2799 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(df_example_miss, <span class="at">na.rm=</span>T) <span class="do">## z brakami</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        A         B         C 
-22.352941 28.911938  4.451112 </code></pre>
+22.352941 25.105078  5.392959 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(<span class="fu">complete</span>(df_example_imp)) <span class="do">## po imputacji</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        A         B         C 
-20.600000 29.526533  4.779952 </code></pre>
+22.100000 23.590732  5.767498 </code></pre>
 </div>
 </div>
 <p>Zmiany:</p>
@@ -3320,73 +3321,73 @@ C 1 0 0</code></pre>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    A         B        C
-1   2 23.543931 4.229771
-2  12 23.265500 1.684276
-3   6 15.024514 3.856439
-4   8 23.543931 2.465899
-5   8 23.265500 3.922842
-6  12 19.296970 2.303615
-7  14  4.287294 5.264534
-8  16 24.001624 5.706605
-9  18 31.555532 4.726870
-10 20 13.440938 5.706605
-11 22 35.002411 4.726870
-12 24 24.001624 6.177767
-13 38 25.408447 5.905812
-14 28 31.024667 6.177767
-15 30 49.296267 6.177767
-16 32 32.417902 6.177767
-17 34 43.846257 5.871215
-18 36 37.476944 5.748807
-19 38 53.701805 5.748807
-20 40 53.701805 5.871215</code></pre>
+1   2 24.283456 3.752460
+2  16 -5.303889 5.355133
+3   6 23.681043 4.935863
+4   8  5.720679 4.406310
+5  16 -5.303889 4.840963
+6  12 17.362622 2.919388
+7  14 15.958894 3.897667
+8  16 15.958894 4.159740
+9  18 24.283456 4.159740
+10 20 23.793140 6.142353
+11 22 22.720973 5.840588
+12 24 14.981815 6.142353
+13 38 43.319639 8.441927
+14 28 24.401859 6.142353
+15 30 34.959526 6.142353
+16 32 39.660040 6.142353
+17 34 40.534582 7.415746
+18 36 42.134862 8.000331
+19 38 33.472003 7.415746
+20 40 43.319639 8.000331</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    A         B        C
-1   2 15.024514 4.229771
-2  18 15.024514 1.684276
-3   6 15.024514 3.856439
-4   8 23.543931 2.465899
-5  40 23.265500 3.922842
-6  12 19.296970 2.303615
-7  14  4.287294 5.264534
-8  16 13.440938 5.706605
-9  18 31.555532 2.303615
-10 20 13.440938 2.303615
-11 22 35.002411 4.726870
-12 24 24.001624 6.177767
-13 40 25.408447 5.905812
-14 28 31.024667 1.684276
-15 30 49.296267 1.684276
-16 32 32.417902 5.871215
-17 34 43.846257 5.748807
-18 36 37.476944 5.748807
-19 38 53.701805 5.748807
-20 40 23.265500 5.871215</code></pre>
+1   2 23.681043 3.752460
+2  40 33.472003 5.355133
+3   6 23.681043 4.935863
+4   8  5.720679 4.406310
+5   6 -5.303889 4.840963
+6  12 17.362622 2.919388
+7  14 15.958894 3.897667
+8  16 17.362622 4.159740
+9  18 24.283456 3.897667
+10 20 23.793140 7.415746
+11 22 22.720973 5.840588
+12 24 14.981815 6.142353
+13 40 43.319639 8.441927
+14 28 24.401859 7.415746
+15 30 34.959526 6.142353
+16 32 39.660040 7.415746
+17 34 40.534582 8.441927
+18 36 42.134862 7.415746
+19 38 33.472003 7.415746
+20 40 43.319639 8.000331</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">complete</span>(df_example_imp, <span class="st">&quot;all&quot;</span>), colMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          1         2         3         4
-A 21.900000 20.100000 23.900000 20.700000
-B 29.355193 27.293515 26.467324 27.359807
-C  4.922563  4.807122  4.160453  4.741391</code></pre>
+<pre><code>          1         2        3         4
+A 22.500000 21.700000 23.30000 22.100000
+B 23.996967 23.139015 25.97583 24.997684
+C  5.712685  5.840728  5.91267  5.814267</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">complete</span>(df_example_imp, <span class="st">&quot;all&quot;</span>), colMeans) <span class="sc">|&gt;</span> </span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        A         B         C 
-21.650000 27.618960  4.657882 </code></pre>
+22.400000 24.527373  5.820087 </code></pre>
 </div>
 </div>
 <p>Bez braków</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(df_example) <span class="do">## bez braków</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       A        B        C 
-21.00000 28.12490  4.95669 </code></pre>
+<pre><code>      A       B       C 
+21.0000 23.2210  5.2799 </code></pre>
 </div>
 </div>
 <p>Regresja</p>
@@ -3406,34 +3407,34 @@ C  4.922563  4.807122  4.160453  4.741391</code></pre>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pool</span>(lm_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Class: mipo    m = 4 
-         term m   estimate         ubar           b            t dfcom       df
-1 (Intercept) 4 3.26679474 0.3649730741 0.167058498 0.5737961961    18 7.108072
-2           A 4 0.06416778 0.0005834761 0.000181128 0.0008098861    18 8.986247
-        riv    lambda       fmi
-1 0.5721604 0.3639326 0.4897859
-2 0.3880364 0.2795578 0.3997693</code></pre>
+         term m  estimate         ubar            b            t dfcom
+1 (Intercept) 4 3.0765739 0.1912327354 0.0421132256 0.2438742674    18
+2           A 4 0.1227096 0.0002974085 0.0001042088 0.0004276695    18
+         df       riv    lambda       fmi
+1 10.656721 0.2752747 0.2158552 0.3306917
+2  8.387777 0.4379868 0.3045833 0.4267172</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">pool</span>(lm_results))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         term   estimate std.error statistic       df     p.value
-1 (Intercept) 3.26679474 0.7574934  4.312638 7.108072 0.003388506
-2           A 0.06416778 0.0284585  2.254784 8.986247 0.050649412</code></pre>
+<pre><code>         term  estimate  std.error statistic        df      p.value
+1 (Intercept) 3.0765739 0.49383628  6.229947 10.656721 7.398527e-05
+2           A 0.1227096 0.02068017  5.933682  8.387777 2.897819e-04</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(C<span class="sc">~</span>A, df_example)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Estimate Std. Error  t value     Pr(&gt;|t|)
-(Intercept) 2.94126437 0.45035514 6.530989 3.869802e-06
-A           0.09597265 0.01879746 5.105618 7.391112e-05</code></pre>
+(Intercept) 3.46831227  0.5480628 6.328312 5.793840e-06
+A           0.08626608  0.0228757 3.771080 1.398684e-03</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(C<span class="sc">~</span>A, df_example_miss)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              Estimate Std. Error  t value     Pr(&gt;|t|)
-(Intercept) 3.34249564 0.63729221 5.244840 0.0007786986
-A           0.07102509 0.02907616 2.442725 0.0403924266</code></pre>
+<pre><code>             Estimate Std. Error  t value     Pr(&gt;|t|)
+(Intercept) 3.0790422 0.47218725 6.520808 0.0001840286
+A           0.1136265 0.02154333 5.274325 0.0007513492</code></pre>
 </div>
 </div>
 </div>
@@ -3586,9 +3587,50 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<section id="ćwiczenie-na-zajęcia" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="ćwiczenie-na-zajęcia"><span class="header-section-number">2.1</span> Ćwiczenie na zajęcia</h2>
 </section>
+<section id="przyklad-użycia-pakietu-midas" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Przyklad użycia pakietu <code>MIDAS</code></h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>adult <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/MIDASverse/MIDASpy/master/Examples/adult_data.csv&quot;</span>,<span class="at">row.names =</span> <span class="dv">1</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">89</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>adult <span class="ot">&lt;-</span> <span class="fu">add_missingness</span>(adult, <span class="at">prop =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>adult_cat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;workclass&#39;</span>,<span class="st">&#39;marital_status&#39;</span>,<span class="st">&#39;relationship&#39;</span>,<span class="st">&#39;race&#39;</span>,<span class="st">&#39;education&#39;</span>,<span class="st">&#39;occupation&#39;</span>,<span class="st">&#39;native_country&#39;</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>adult_bin <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;sex&#39;</span>,<span class="st">&#39;class_labels&#39;</span>)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply rMIDAS preprocessing steps</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>adult_conv <span class="ot">&lt;-</span> <span class="fu">convert</span>(adult, </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">bin_cols =</span> adult_bin, </span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">cat_cols =</span> adult_cat,</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">minmax_scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>adult_train <span class="ot">&lt;-</span> <span class="fu">train</span>(adult_conv,</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">training_epochs =</span> <span class="dv">20</span>,</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">layer_structure =</span> <span class="fu">c</span>(<span class="dv">128</span>,<span class="dv">128</span>),</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">input_drop =</span> <span class="fl">0.75</span>,</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">89</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>adult_complete <span class="ot">&lt;-</span> <span class="fu">complete</span>(adult_train, <span class="at">m =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>adult_model <span class="ot">&lt;-</span> <span class="fu">combine</span>(<span class="st">&quot;class_labels ~ hours_per_week + sex&quot;</span>, </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>                    adult_complete,</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family =</span> stats<span class="sc">::</span>binomial)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>adult_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ćwiczenie-na-zajęcia" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Ćwiczenie na zajęcia</h1>
+<ol type="1">
+<li>Proszę wczytać zbiór danych na potrzeby projektu.</li>
+<li>Proszę zaimputować dane dla wybranych zmiennych wykorzystując metodę <code>mi</code>.</li>
+</ol>
 </section>
 
 </main>
