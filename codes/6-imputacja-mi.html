@@ -3121,33 +3121,16 @@ vertical-align: -.125em;
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package &#39;mice&#39; was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: &#39;mice&#39;</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from &#39;package:stats&#39;:
-
-    filter</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    cbind, rbind</code></pre>
-</div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.experimental <span class="im">import</span> enable_iterative_imputer</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> IterativeImputer</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.experimental <span class="im">import</span> enable_iterative_imputer</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> IterativeImputer</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -3161,33 +3144,44 @@ Attaching package: &#39;mice&#39;</code></pre>
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Przykładowe dane</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">*</span><span class="dv">2</span>, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">B =</span> <span class="dv">5</span> <span class="sc">+</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">*</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">10</span><span class="sc">*</span><span class="fu">rnorm</span>(<span class="dv">10</span>), </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">C =</span> <span class="dv">2</span><span class="sc">+</span><span class="fu">sqrt</span>(<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>df_example_miss <span class="ot">&lt;-</span> df_example</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df_example_miss<span class="sc">$</span>A[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df_example_miss<span class="sc">$</span>B[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">8</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>df_example_miss<span class="sc">$</span>C[<span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">10</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>df_example_miss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_rows <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span>n_rows)<span class="sc">*</span><span class="dv">2</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">B =</span> <span class="dv">5</span> <span class="sc">+</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span>n_rows)<span class="sc">*</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">10</span><span class="sc">*</span><span class="fu">rnorm</span>(n_rows), </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">C =</span> <span class="dv">2</span><span class="sc">+</span><span class="fu">sqrt</span>(<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span>n_rows)) <span class="sc">+</span> <span class="fu">rnorm</span>(n_rows)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df_example_miss <span class="ot">&lt;-</span> df_example</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df_example_miss<span class="sc">$</span>A[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>, <span class="dv">13</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>df_example_miss<span class="sc">$</span>B[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">20</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>df_example_miss<span class="sc">$</span>C[<span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">14</span><span class="sc">:</span><span class="dv">18</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>df_example_miss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    A         B        C
-1   2        NA 3.186694
-2  NA        NA 2.348737
-3   6  5.355933 3.353002
-4   8  8.773452 5.884917
-5  NA 18.365244 5.457836
-6  12 22.731849 2.684054
-7  14  8.856789 4.469354
-8  16        NA 3.748577
-9  18 26.002831       NA
-10 20 29.369666       NA</code></pre>
+1   2        NA 4.229771
+2  NA        NA 1.684276
+3   6 15.024514 3.856439
+4   8 23.543931 2.465899
+5  NA 23.265500 3.922842
+6  12 19.296970 2.303615
+7  14  4.287294 5.264534
+8  16        NA 5.706605
+9  18 31.555532       NA
+10 20 13.440938       NA
+11 22 35.002411 4.726870
+12 24 24.001624 6.177767
+13 NA 25.408447 5.905812
+14 28 31.024667       NA
+15 30 49.296267       NA
+16 32 32.417902       NA
+17 34 43.846257       NA
+18 36 37.476944       NA
+19 38 53.701805 5.748807
+20 40        NA 5.871215</code></pre>
 </div>
 </div>
 <p>Imputacja z wykorzystaniem metody wielokrotnej imputacji</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_example_imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(df_example_miss, <span class="at">m=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_example_imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(df_example_miss, <span class="at">m=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  iter imp variable
@@ -3200,7 +3194,7 @@ Attaching package: &#39;mice&#39;</code></pre>
 </div>
 <p>Informacja dotycząca metody i zależności w danych</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_example_imp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_example_imp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Class: mids
 Number of multiple imputations:  1 
@@ -3216,37 +3210,47 @@ C 1 1 0</code></pre>
 </div>
 <p>Pełny zbiór danych</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    A         B        C
-1   2  5.355933 3.186694
-2   2  8.856789 2.348737
-3   6  5.355933 3.353002
-4   8  8.773452 5.884917
-5  12 18.365244 5.457836
-6  12 22.731849 2.684054
-7  14  8.856789 4.469354
-8  16 18.365244 3.748577
-9  18 26.002831 3.748577
-10 20 29.369666 4.469354</code></pre>
+1   2 31.555532 4.229771
+2   2 23.543931 1.684276
+3   6 15.024514 3.856439
+4   8 23.543931 2.465899
+5  14 23.265500 3.922842
+6  12 19.296970 2.303615
+7  14  4.287294 5.264534
+8  16 23.543931 5.706605
+9  18 31.555532 2.303615
+10 20 13.440938 5.871215
+11 22 35.002411 4.726870
+12 24 24.001624 6.177767
+13 16 25.408447 5.905812
+14 28 31.024667 6.177767
+15 30 49.296267 5.706605
+16 32 32.417902 5.748807
+17 34 43.846257 5.748807
+18 36 37.476944 6.177767
+19 38 53.701805 5.748807
+20 40 49.296267 5.871215</code></pre>
 </div>
 </div>
 <p>Podsumowanie średnich</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(df_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        A         B         C 
-11.000000 17.803894  4.305182 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(df_example_miss, <span class="at">na.rm=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        A         B         C 
-12.000000 17.065109  3.891646 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(<span class="fu">complete</span>(df_example_imp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(df_example) <span class="do">## bez braków</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       A        B        C 
-11.00000 15.20337  3.93511 </code></pre>
+21.00000 28.12490  4.95669 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(df_example_miss, <span class="at">na.rm=</span>T) <span class="do">## z brakami</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        A         B         C 
+22.352941 28.911938  4.451112 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(<span class="fu">complete</span>(df_example_imp)) <span class="do">## po imputacji</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        A         B         C 
+20.600000 29.526533  4.779952 </code></pre>
 </div>
 </div>
 <p>Zmiany:</p>
@@ -3256,10 +3260,10 @@ C 1 1 0</code></pre>
 <li>okreslamy zależnosci w danych (B i C zależne tylko od A)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pred_mat <span class="ot">&lt;-</span> df_example_imp<span class="sc">$</span>predictorMatrix</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>pred_mat[<span class="st">&quot;C&quot;</span>, <span class="st">&quot;B&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>pred_mat[<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>pred_mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pred_mat <span class="ot">&lt;-</span> df_example_imp<span class="sc">$</span>predictorMatrix</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>pred_mat[<span class="st">&quot;C&quot;</span>, <span class="st">&quot;B&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>pred_mat[<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>pred_mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  A B C
 A 0 1 1
@@ -3268,10 +3272,10 @@ C 1 0 0</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_example_imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(<span class="at">data =</span> df_example_miss, </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">m=</span><span class="dv">4</span>, </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;norm.predict&quot;</span>, </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">predictorMatrix =</span> pred_mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_example_imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(<span class="at">data =</span> df_example_miss, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">m=</span><span class="dv">4</span>, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">predictorMatrix =</span> pred_mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  iter imp variable
@@ -3298,13 +3302,13 @@ C 1 0 0</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_example_imp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_example_imp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Class: mids
 Number of multiple imputations:  4 
 Imputation methods:
-             A              B              C 
-&quot;norm.predict&quot; &quot;norm.predict&quot; &quot;norm.predict&quot; 
+   A    B    C 
+&quot;rf&quot; &quot;rf&quot; &quot;rf&quot; 
 PredictorMatrix:
   A B C
 A 0 1 1
@@ -3313,42 +3317,76 @@ C 1 0 0</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           A          B        C
-1   2.000000 -0.7938797 3.186694
-2   3.604783  1.7410329 2.348737
-3   6.000000  5.3559325 3.353002
-4   8.000000  8.7734518 5.884917
-5  15.142225 18.3652444 5.457836
-6  12.000000 22.7318492 2.684054
-7  14.000000  8.8567892 4.469354
-8  16.000000 21.3204962 3.748577
-9  18.000000 26.0028313 4.739000
-10 20.000000 29.3696656 4.940591</code></pre>
+<pre><code>    A         B        C
+1   2 23.543931 4.229771
+2  12 23.265500 1.684276
+3   6 15.024514 3.856439
+4   8 23.543931 2.465899
+5   8 23.265500 3.922842
+6  12 19.296970 2.303615
+7  14  4.287294 5.264534
+8  16 24.001624 5.706605
+9  18 31.555532 4.726870
+10 20 13.440938 5.706605
+11 22 35.002411 4.726870
+12 24 24.001624 6.177767
+13 38 25.408447 5.905812
+14 28 31.024667 6.177767
+15 30 49.296267 6.177767
+16 32 32.417902 6.177767
+17 34 43.846257 5.871215
+18 36 37.476944 5.748807
+19 38 53.701805 5.748807
+20 40 53.701805 5.871215</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(df_example_imp, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           A          B        C
-1   2.000000 -0.7951651 3.186694
-2   3.068721  0.8933699 2.348737
-3   6.000000  5.3559325 3.353002
-4   8.000000  8.7734518 5.884917
-5  15.129832 18.3652444 5.457836
-6  12.000000 22.7318492 2.684054
-7  14.000000  8.8567892 4.469354
-8  16.000000 21.3242660 3.748577
-9  18.000000 26.0028313 4.751859
-10 20.000000 29.3696656 4.954854</code></pre>
+<pre><code>    A         B        C
+1   2 15.024514 4.229771
+2  18 15.024514 1.684276
+3   6 15.024514 3.856439
+4   8 23.543931 2.465899
+5  40 23.265500 3.922842
+6  12 19.296970 2.303615
+7  14  4.287294 5.264534
+8  16 13.440938 5.706605
+9  18 31.555532 2.303615
+10 20 13.440938 2.303615
+11 22 35.002411 4.726870
+12 24 24.001624 6.177767
+13 40 25.408447 5.905812
+14 28 31.024667 1.684276
+15 30 49.296267 1.684276
+16 32 32.417902 5.871215
+17 34 43.846257 5.748807
+18 36 37.476944 5.748807
+19 38 53.701805 5.748807
+20 40 23.265500 5.871215</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">complete</span>(df_example_imp, <span class="st">&quot;all&quot;</span>), colMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">complete</span>(df_example_imp, <span class="st">&quot;all&quot;</span>), colMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          1         2         3         4
-A 11.474701 11.628581 11.419855 11.761349
-B 14.172341 14.406712 14.087823 14.605780
-C  4.081276  4.070906  4.083988  4.058619</code></pre>
+A 21.900000 20.100000 23.900000 20.700000
+B 29.355193 27.293515 26.467324 27.359807
+C  4.922563  4.807122  4.160453  4.741391</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">complete</span>(df_example_imp, <span class="st">&quot;all&quot;</span>), colMeans) <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        A         B         C 
+21.650000 27.618960  4.657882 </code></pre>
+</div>
+</div>
+<p>Bez braków</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(df_example) <span class="do">## bez braków</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       A        B        C 
+21.00000 28.12490  4.95669 </code></pre>
 </div>
 </div>
 <p>Regresja</p>
@@ -3358,8 +3396,8 @@ C  4.081276  4.070906  4.083988  4.058619</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 4
  $ call    : language with.mids(data = df_example_imp, expr = lm(C ~ A))
- $ call1   : language mice(data = df_example_miss, m = 4, method = &quot;norm.predict&quot;, predictorMatrix = pred_mat)
- $ nmis    : int [1:3] 2 3 2
+ $ call1   : language mice(data = df_example_miss, m = 4, method = &quot;rf&quot;, predictorMatrix = pred_mat)
+ $ nmis    : int [1:3] 3 4 7
  $ analyses:List of 4
  - attr(*, &quot;class&quot;)= chr &quot;mira&quot;</code></pre>
 </div>
@@ -3368,34 +3406,34 @@ C  4.081276  4.070906  4.083988  4.058619</code></pre>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pool</span>(lm_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Class: mipo    m = 4 
-         term m   estimate        ubar            b           t dfcom       df
-1 (Intercept) 4 2.94069207 0.592683789 5.262925e-04 0.593341655     8 6.538180
-2           A 4 0.09795835 0.003532751 1.781327e-05 0.003555018     8 6.503904
-          riv      lambda       fmi
-1 0.001109977 0.001108747 0.2105599
-2 0.006302901 0.006263423 0.2153852</code></pre>
+         term m   estimate         ubar           b            t dfcom       df
+1 (Intercept) 4 3.26679474 0.3649730741 0.167058498 0.5737961961    18 7.108072
+2           A 4 0.06416778 0.0005834761 0.000181128 0.0008098861    18 8.986247
+        riv    lambda       fmi
+1 0.5721604 0.3639326 0.4897859
+2 0.3880364 0.2795578 0.3997693</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">pool</span>(lm_results))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         term   estimate  std.error statistic       df     p.value
-1 (Intercept) 2.94069207 0.77028674  3.817659 6.538180 0.007465628
-2           A 0.09795835 0.05962397  1.642936 6.503904 0.147658657</code></pre>
+<pre><code>         term   estimate std.error statistic       df     p.value
+1 (Intercept) 3.26679474 0.7574934  4.312638 7.108072 0.003388506
+2           A 0.06416778 0.0284585  2.254784 8.986247 0.050649412</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(C<span class="sc">~</span>A, df_example)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>             Estimate Std. Error  t value   Pr(&gt;|t|)
-(Intercept) 2.8013825 0.83950524 3.336945 0.01027772
-A           0.1367091 0.06764926 2.020851 0.07795566</code></pre>
+<pre><code>              Estimate Std. Error  t value     Pr(&gt;|t|)
+(Intercept) 2.94126437 0.45035514 6.530989 3.869802e-06
+A           0.09597265 0.01879746 5.105618 7.391112e-05</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(C<span class="sc">~</span>A, df_example_miss)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              Estimate Std. Error   t value   Pr(&gt;|t|)
-(Intercept) 3.69093259  1.1677995 3.1605877 0.03416478
-A           0.02036213  0.1081172 0.1883338 0.85978380</code></pre>
+<pre><code>              Estimate Std. Error  t value     Pr(&gt;|t|)
+(Intercept) 3.34249564 0.63729221 5.244840 0.0007786986
+A           0.07102509 0.02907616 2.442725 0.0403924266</code></pre>
 </div>
 </div>
 </div>
@@ -3404,31 +3442,42 @@ A           0.02036213  0.1081172 0.1883338 0.85978380</code></pre>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed for reproducibility</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create original dataframe</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>df_example <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;A&#39;</span>: np.arange(<span class="dv">1</span>, <span class="dv">11</span>) <span class="op">*</span> <span class="dv">2</span>,</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;B&#39;</span>: <span class="dv">5</span> <span class="op">+</span> np.arange(<span class="dv">1</span>, <span class="dv">11</span>) <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">10</span> <span class="op">*</span> np.random.normal(size<span class="op">=</span><span class="dv">10</span>),</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;C&#39;</span>: <span class="dv">2</span> <span class="op">+</span> np.sqrt(np.arange(<span class="dv">1</span>, <span class="dv">11</span>)) <span class="op">+</span> np.random.normal(size<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create copy with missing values</span></span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>df_example_miss <span class="op">=</span> df_example.copy()</span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>df_example_miss.loc[[<span class="dv">1</span>, <span class="dv">4</span>], <span class="st">&#39;A&#39;</span>] <span class="op">=</span> np.nan  <span class="co"># R indices 2,5</span></span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>df_example_miss.loc[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">7</span>], <span class="st">&#39;B&#39;</span>] <span class="op">=</span> np.nan  <span class="co"># R indices 1,2,8</span></span>
-<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>df_example_miss.loc[[<span class="dv">8</span>, <span class="dv">9</span>], <span class="st">&#39;C&#39;</span>] <span class="op">=</span> np.nan  <span class="co"># R indices 9,10</span></span>
-<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>df_example_miss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>n_rows <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create original dataframe</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>df_example <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;A&#39;</span>: np.arange(<span class="dv">1</span>, n_rows <span class="op">+</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">2</span>,</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;B&#39;</span>: <span class="dv">5</span> <span class="op">+</span> np.arange(<span class="dv">1</span>, n_rows <span class="op">+</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">10</span> <span class="op">*</span> np.random.normal(size<span class="op">=</span>n_rows),</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;C&#39;</span>: <span class="dv">2</span> <span class="op">+</span> np.sqrt(np.arange(<span class="dv">1</span>, n_rows <span class="op">+</span> <span class="dv">1</span>)) <span class="op">+</span> np.random.normal(size<span class="op">=</span>n_rows)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create copy with missing values</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>df_example_miss <span class="op">=</span> df_example.copy()</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>df_example_miss.loc[[<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">12</span>], <span class="st">&#39;A&#39;</span>] <span class="op">=</span> np.nan  <span class="co"># R indices 2,5</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>df_example_miss.loc[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">19</span>], <span class="st">&#39;B&#39;</span>] <span class="op">=</span> np.nan  <span class="co"># R indices 1,2,8</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>df_example_miss.loc[[<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>], <span class="st">&#39;C&#39;</span>] <span class="op">=</span> np.nan  <span class="co"># R indices 9,10</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>df_example_miss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      A          B         C
-0   2.0        NaN  2.536582
-1   NaN        NaN  2.948484
-2   6.0  17.476885  3.974013
-3   8.0  28.230299  2.086720
-4   NaN  12.658466  2.511150
-5  12.0  14.658630  3.887202
-6  14.0  34.792128  3.632920
-7  16.0        NaN  5.142674
-8  18.0  18.305256       NaN
-9  20.0  30.425600       NaN</code></pre>
+<pre><code>       A          B         C
+0    2.0        NaN  4.465649
+1    NaN        NaN  3.188437
+2    6.0  17.476885  3.799579
+3    8.0  28.230299  2.575252
+4    NaN  12.658466  3.691685
+5   12.0  14.658630  4.560412
+6   14.0  34.792128  3.494758
+7   16.0        NaN  5.204125
+8   18.0  18.305256       NaN
+9   20.0  30.425600       NaN
+10  22.0  22.365823       NaN
+11  24.0  24.342702  7.316380
+12   NaN  33.419623  5.592054
+13  28.0  13.867198       NaN
+14  30.0  17.750822       NaN
+15  32.0  31.377125       NaN
+16  34.0  28.871689       NaN
+17  36.0  44.142473       NaN
+18  38.0  33.919759  5.030713
+19  40.0        NaN  6.668997</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -3436,56 +3485,102 @@ A           0.02036213  0.1081172 0.1883338 0.85978380</code></pre>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>df_example_imp_single <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    imp.fit_transform(df_example_miss),</span>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>df_example_miss.columns</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>df_example_imp_single</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           A          B         C
-0   2.000000  22.348191  2.536582
-1  11.998340  22.362671  2.948484
-2   6.000000  17.476885  3.974013
-3   8.000000  28.230299  2.086720
-4  11.986228  12.658466  2.511150
-5  12.000000  14.658630  3.887202
-6  14.000000  34.792128  3.632920
-7  16.000000  22.368345  5.142674
-8  18.000000  18.305256  3.357714
-9  20.000000  30.425600  3.357506</code></pre>
+<pre><code>/opt/homebrew/anaconda3/lib/python3.11/site-packages/sklearn/impute/_iterative.py:825: ConvergenceWarning: [IterativeImputer] Early stopping criterion not reached.
+  warnings.warn(</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>df_example_imp_single</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            A          B         C
+0    2.000000  11.308202  4.465649
+1    7.938353  23.651340  3.188437
+2    6.000000  17.476885  3.799579
+3    8.000000  28.230299  2.575252
+4    1.927999  12.658466  3.691685
+5   12.000000  14.658630  4.560412
+6   14.000000  34.792128  3.494758
+7   16.000000  19.375253  5.204125
+8   18.000000  18.305256  5.324366
+9   20.000000  30.425600  4.346735
+10  22.000000  22.365823  5.392295
+11  24.000000  24.342702  7.316380
+12  32.143211  33.419623  5.592054
+13  28.000000  13.867198  6.956878
+14  30.000000  17.750822  6.805033
+15  32.000000  31.377125  5.676420
+16  34.000000  28.871689  6.165120
+17  36.000000  44.142473  4.871637
+18  38.000000  33.919759  5.030713
+19  40.000000  32.088718  6.668997</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> LinearRegression()</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>imp <span class="op">=</span> IterativeImputer(estimator<span class="op">=</span>lr, verbose<span class="op">=</span><span class="dv">2</span>, max_iter<span class="op">=</span><span class="dv">5</span>, tol<span class="op">=</span><span class="fl">1e-10</span>, imputation_order<span class="op">=</span><span class="st">&#39;roman&#39;</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>ImputedData<span class="op">=</span>imp.fit_transform(df_example_miss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> LinearRegression()</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>imp <span class="op">=</span> IterativeImputer(estimator<span class="op">=</span>lr, verbose<span class="op">=</span><span class="dv">2</span>, max_iter<span class="op">=</span><span class="dv">5</span>, tol<span class="op">=</span><span class="fl">1e-10</span>, imputation_order<span class="op">=</span><span class="st">&#39;roman&#39;</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>ImputedData<span class="op">=</span>imp.fit_transform(df_example_miss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[IterativeImputer] Completing matrix with shape (10, 3)
+<pre><code>[IterativeImputer] Completing matrix with shape (20, 3)
 [IterativeImputer] Ending imputation round 1/5, elapsed time 0.00
-[IterativeImputer] Change: 7.096056827660082, scaled tolerance: 3.479212815507391e-09 
+[IterativeImputer] Change: 13.051326494599564, scaled tolerance: 4.414247332595274e-09 
 [IterativeImputer] Ending imputation round 2/5, elapsed time 0.00
-[IterativeImputer] Change: 3.185312967734216, scaled tolerance: 3.479212815507391e-09 
+[IterativeImputer] Change: 8.117869896232875, scaled tolerance: 4.414247332595274e-09 
 [IterativeImputer] Ending imputation round 3/5, elapsed time 0.00
-[IterativeImputer] Change: 0.3725049382000556, scaled tolerance: 3.479212815507391e-09 
+[IterativeImputer] Change: 0.8339024296658266, scaled tolerance: 4.414247332595274e-09 
 [IterativeImputer] Ending imputation round 4/5, elapsed time 0.00
-[IterativeImputer] Change: 0.119054715296663, scaled tolerance: 3.479212815507391e-09 
+[IterativeImputer] Change: 0.6558870530187022, scaled tolerance: 4.414247332595274e-09 
 [IterativeImputer] Ending imputation round 5/5, elapsed time 0.00
-[IterativeImputer] Change: 0.07415347713198273, scaled tolerance: 3.479212815507391e-09 
+[IterativeImputer] Change: 0.5541145150858071, scaled tolerance: 4.414247332595274e-09 
 /opt/homebrew/anaconda3/lib/python3.11/site-packages/sklearn/impute/_iterative.py:825: ConvergenceWarning: [IterativeImputer] Early stopping criterion not reached.
   warnings.warn(</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>Imputed_data <span class="op">=</span> pd.DataFrame(ImputedData)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>Imputed_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>Imputed_data <span class="op">=</span> pd.DataFrame(ImputedData)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>Imputed_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           0          1         2
-0   2.000000  15.205469  2.536582
-1   7.067967  20.899638  2.948484
-2   6.000000  17.476885  3.974013
-3   8.000000  28.230299  2.086720
-4   1.975750  12.658466  2.511150
-5  12.000000  14.658630  3.887202
-6  14.000000  34.792128  3.632920
-7  16.000000  20.142863  5.142674
-8  18.000000  18.305256  5.396870
-9  20.000000  30.425600  4.903535</code></pre>
+<pre><code>            0          1         2
+0    2.000000  11.350182  4.465649
+1    8.240235  24.466321  3.188437
+2    6.000000  17.476885  3.799579
+3    8.000000  28.230299  2.575252
+4    0.937879  12.658466  3.691685
+5   12.000000  14.658630  4.560412
+6   14.000000  34.792128  3.494758
+7   16.000000  19.525065  5.204125
+8   18.000000  18.305256  5.469321
+9   20.000000  30.425600  4.266226
+10  22.000000  22.365823  5.499482
+11  24.000000  24.342702  7.316380
+12  32.299766  33.419623  5.592054
+13  28.000000  13.867198  7.306115
+14  30.000000  17.750822  7.097441
+15  32.000000  31.377125  5.712531
+16  34.000000  28.871689  6.275210
+17  36.000000  44.142473  4.691762
+18  38.000000  33.919759  5.030713
+19  40.000000  32.366218  6.668997</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>df_example.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A    21.000000
+B    24.287014
+C     4.817324
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>df_example_miss.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A    22.352941
+B    25.412780
+C     4.632337
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>Imputed_data.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0    21.073894
+1    24.715613
+2     5.095307
+dtype: float64</code></pre>
 </div>
 </div>
 </div>
