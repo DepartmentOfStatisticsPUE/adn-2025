@@ -62,3 +62,8 @@
 
 + Imputacja regresyjna
 
++ Kalibracja
+  + R: `survey`, `sampling`, `laeken`
+  + Python: `samplics`
+  + [Notatnik]()
+  + Dane na zajęcia [data5-kalibracja.csv](data/data5-kalibracja.csv)
