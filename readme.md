@@ -62,8 +62,10 @@
 
 + Imputacja regresyjna
 
-+ Kalibracja
+### 5. Kalibracja
+
++ Wstęp do kalibracji
   + R: `survey`, `sampling`, `laeken`
-  + Python: `samplics`
+  + Python: [`samplics`](https://samplics-org.github.io/samplics/pages/weight_adj.html)
   + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/7-kalibracja-wstep.html)
   + Dane na zajęcia [data5-kalibracja.csv](data/data5-kalibracja.csv)
