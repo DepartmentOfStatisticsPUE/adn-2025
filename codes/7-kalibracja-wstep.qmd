@@ -25,7 +25,7 @@ library(sampling)
 ```{python moduly}
 import numpy as np
 import pandas as pd
-# import samplics as sc
+# from samplics.weighting import SampleWeight
 ```
 
 :::
@@ -218,11 +218,10 @@ np.allclose(np.round(w2, 3), np.round(dane_z_pdf, 3))
 ## R
 
 ```{r}
-library(sampling)
-```
-
-```{r}
-wskaznik <- calib(Xs = Xs, d=dane$Waga, method = "linear", total = wartosci_globalne)
+wskaznik <- calib(Xs = Xs, 
+                  d=dane$Waga, 
+                  method = "linear", 
+                  total = wartosci_globalne)
 w2 <- dane$Waga*wskaznik
 ```
 
@@ -233,5 +232,18 @@ all.equal(round(w2,3),  round(dane_z_pdf,3))
 ```
 
 ## Python
+
+
+```{python, eval = F}
+totals = {"Przychod": 19000, "WielkoscL": 280, "WielkoscM": 720}
+
+dane["calib_weight"] = SampleWeight().calibrate(
+    dane["Waga"],  ## waga pierwotna (d)
+    dane[['Przychod', 'WielkoscL', "WielkoscM"]],  ## zmienne pomocnicze 
+    totals ## wartosci globalne
+)
+dane.head(10)
+```
+
 
 :::

@@ -3268,8 +3268,304 @@ window.Quarto = {
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import samplics as sc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.0 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with &#39;pybind11&gt;=2.12&#39;.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to &#39;numpy&lt;2&#39; or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/__init__.py&quot;, line 26, in &lt;module&gt;
+    from pandas.compat import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/compat/__init__.py&quot;, line 27, in &lt;module&gt;
+    from pandas.compat.pyarrow import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/compat/pyarrow.py&quot;, line 8, in &lt;module&gt;
+    import pyarrow as pa
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pyarrow/__init__.py&quot;, line 65, in &lt;module&gt;
+    import pyarrow.lib as _lib
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.0 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with &#39;pybind11&gt;=2.12&#39;.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to &#39;numpy&lt;2&#39; or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/__init__.py&quot;, line 49, in &lt;module&gt;
+    from pandas.core.api import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/api.py&quot;, line 9, in &lt;module&gt;
+    from pandas.core.dtypes.dtypes import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/dtypes/dtypes.py&quot;, line 24, in &lt;module&gt;
+    from pandas._libs import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pyarrow/__init__.py&quot;, line 65, in &lt;module&gt;
+    import pyarrow.lib as _lib
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.0 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with &#39;pybind11&gt;=2.12&#39;.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to &#39;numpy&lt;2&#39; or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/__init__.py&quot;, line 49, in &lt;module&gt;
+    from pandas.core.api import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/api.py&quot;, line 28, in &lt;module&gt;
+    from pandas.core.arrays import Categorical
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/arrays/__init__.py&quot;, line 1, in &lt;module&gt;
+    from pandas.core.arrays.arrow import ArrowExtensionArray
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/arrays/arrow/__init__.py&quot;, line 5, in &lt;module&gt;
+    from pandas.core.arrays.arrow.array import ArrowExtensionArray
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/arrays/arrow/array.py&quot;, line 50, in &lt;module&gt;
+    from pandas.core import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/ops/__init__.py&quot;, line 8, in &lt;module&gt;
+    from pandas.core.ops.array_ops import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/ops/array_ops.py&quot;, line 56, in &lt;module&gt;
+    from pandas.core.computation import expressions
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/computation/expressions.py&quot;, line 21, in &lt;module&gt;
+    from pandas.core.computation.check import NUMEXPR_INSTALLED
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/computation/check.py&quot;, line 5, in &lt;module&gt;
+    ne = import_optional_dependency(&quot;numexpr&quot;, errors=&quot;warn&quot;)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/compat/_optional.py&quot;, line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/importlib/__init__.py&quot;, line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/numexpr/__init__.py&quot;, line 24, in &lt;module&gt;
+    from numexpr.interpreter import MAX_THREADS, use_vml, __BLOCK_SIZE1__
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.0 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with &#39;pybind11&gt;=2.12&#39;.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to &#39;numpy&lt;2&#39; or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/__init__.py&quot;, line 49, in &lt;module&gt;
+    from pandas.core.api import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/api.py&quot;, line 28, in &lt;module&gt;
+    from pandas.core.arrays import Categorical
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/arrays/__init__.py&quot;, line 1, in &lt;module&gt;
+    from pandas.core.arrays.arrow import ArrowExtensionArray
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/arrays/arrow/__init__.py&quot;, line 5, in &lt;module&gt;
+    from pandas.core.arrays.arrow.array import ArrowExtensionArray
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/arrays/arrow/array.py&quot;, line 64, in &lt;module&gt;
+    from pandas.core.arrays.masked import BaseMaskedArray
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/arrays/masked.py&quot;, line 60, in &lt;module&gt;
+    from pandas.core import (
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/core/nanops.py&quot;, line 52, in &lt;module&gt;
+    bn = import_optional_dependency(&quot;bottleneck&quot;, errors=&quot;warn&quot;)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/pandas/compat/_optional.py&quot;, line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/importlib/__init__.py&quot;, line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+  File &quot;/opt/homebrew/anaconda3/lib/python3.11/site-packages/bottleneck/__init__.py&quot;, line 7, in &lt;module&gt;
+    from .move import (move_argmax, move_argmin, move_max, move_mean, move_median,
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 122, in _find_and_load_hook
+    return _run_hook(name, _hook)
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 96, in _run_hook
+    module = hook()
+  File &quot;/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/reticulate/python/rpytools/loader.py&quot;, line 120, in _hook
+    return _find_and_load(name, import_)
+AttributeError: _ARRAY_API not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from samplics.weighting import SampleWeight</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -3285,8 +3581,8 @@ window.Quarto = {
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Wczytujemy dane</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;../data/data5-kalibracja.csv&quot;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dane)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;../data/data5-kalibracja.csv&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dane)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Lp Przychod Wielkosc Waga
 1  1       18        M   50
@@ -3299,16 +3595,16 @@ window.Quarto = {
 </div>
 <p>Dane z pliku PDF do porównania</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dane_z_pdf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">52.275</span>, <span class="fl">50.5821</span>, <span class="fl">51.4286</span>, <span class="fl">50.5462</span>, <span class="fl">48.4301</span>, <span class="fl">39.9657</span>, <span class="fl">51.0054</span>, <span class="fl">54.3911</span>, <span class="fl">45.4675</span>, <span class="fl">49.7357</span>, <span class="fl">52.275</span>, <span class="fl">51.4286</span>, <span class="fl">45.0443</span>, <span class="fl">51.0054</span>, <span class="fl">51.0054</span>, <span class="fl">48.8893</span>, <span class="fl">52.275</span>, <span class="fl">52.275</span>, <span class="fl">50.5462</span>, <span class="fl">51.4286</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dane_z_pdf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">52.275</span>, <span class="fl">50.5821</span>, <span class="fl">51.4286</span>, <span class="fl">50.5462</span>, <span class="fl">48.4301</span>, <span class="fl">39.9657</span>, <span class="fl">51.0054</span>, <span class="fl">54.3911</span>, <span class="fl">45.4675</span>, <span class="fl">49.7357</span>, <span class="fl">52.275</span>, <span class="fl">51.4286</span>, <span class="fl">45.0443</span>, <span class="fl">51.0054</span>, <span class="fl">51.0054</span>, <span class="fl">48.8893</span>, <span class="fl">52.275</span>, <span class="fl">52.275</span>, <span class="fl">50.5462</span>, <span class="fl">51.4286</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wektor wag wynikających z losowania <span class="math inline">\(\boldsymbol{d}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> dane<span class="sc">$</span>Waga</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> dane<span class="sc">$</span>Waga</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Tworzenie macierzy zmiennych pomoczniczych (macierz <span class="math inline">\(\boldsymbol{X}\)</span>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Xs <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>Przychod <span class="sc">+</span> Wielkosc, dane)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Xs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Xs <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>Przychod <span class="sc">+</span> Wielkosc, dane)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Xs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Przychod WielkoscL WielkoscM
 1       18         0         1
@@ -3321,12 +3617,12 @@ window.Quarto = {
 </div>
 <p>Wartości globalne dla zmiennych: Przychód i Wielkość (zachowuję porządek danych; wektor <span class="math inline">\(\boldsymbol{X}\)</span>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>wartosci_globalne <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">19000</span>, <span class="dv">280</span>, <span class="dv">720</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wartosci_globalne <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">19000</span>, <span class="dv">280</span>, <span class="dv">720</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wartości estymowane dla Xs (wektor <span class="math inline">\(\tilde{\boldsymbol{X}}\)</span>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>wartosci_est <span class="ot">&lt;-</span> <span class="fu">colSums</span>(Xs<span class="sc">*</span>d)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wartosci_est</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wartosci_est <span class="ot">&lt;-</span> <span class="fu">colSums</span>(Xs<span class="sc">*</span>d)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>wartosci_est</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Przychod WielkoscL WielkoscM 
     18950       300       700 </code></pre>
@@ -3334,7 +3630,7 @@ window.Quarto = {
 </div>
 <p>Liczba wierszy</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>n_wierszy <span class="ot">&lt;-</span> <span class="fu">NROW</span>(dane)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>n_wierszy <span class="ot">&lt;-</span> <span class="fu">NROW</span>(dane)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>Sposób pierwszy: pętla</li>
@@ -3344,22 +3640,22 @@ window.Quarto = {
 \sum_{i=1}^n d_i \boldsymbol{x}_i \boldsymbol{x}_i^T
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>macierz_sum <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_wierszy) {</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  macierz_sum <span class="ot">&lt;-</span> macierz_sum <span class="sc">+</span> d[i]<span class="sc">*</span>Xs[i,]<span class="sc">%*%</span> <span class="fu">t</span>(Xs[i, ])</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>macierz_sum <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_wierszy) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  macierz_sum <span class="ot">&lt;-</span> macierz_sum <span class="sc">+</span> d[i]<span class="sc">*</span>Xs[i,]<span class="sc">%*%</span> <span class="fu">t</span>(Xs[i, ])</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Korzystamy ze wzoru na wektor <span class="math inline">\(w\)</span> (ze strony 11)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_wierszy)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_wierszy) {</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  w1[i] <span class="ot">&lt;-</span> d[i] <span class="sc">+</span> d[i]<span class="sc">*</span><span class="fu">t</span>(wartosci_globalne <span class="sc">-</span> wartosci_est) <span class="sc">%*%</span> <span class="fu">solve</span>(macierz_sum) <span class="sc">%*%</span> Xs[i, ]</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_wierszy)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_wierszy) {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  w1[i] <span class="ot">&lt;-</span> d[i] <span class="sc">+</span> d[i]<span class="sc">*</span><span class="fu">t</span>(wartosci_globalne <span class="sc">-</span> wartosci_est) <span class="sc">%*%</span> <span class="fu">solve</span>(macierz_sum) <span class="sc">%*%</span> Xs[i, ]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Zaokrąglam do 3 miejsc po przecinku aby porównać do slajdów.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">round</span>(w1,<span class="dv">3</span>),  <span class="fu">round</span>(dane_z_pdf,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">round</span>(w1,<span class="dv">3</span>),  <span class="fu">round</span>(dane_z_pdf,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -3367,8 +3663,8 @@ window.Quarto = {
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dane <span class="op">=</span> pd.read_csv(<span class="st">&quot;../data/data5-kalibracja.csv&quot;</span>, sep<span class="op">=</span><span class="st">&#39;;&#39;</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dane.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dane <span class="op">=</span> pd.read_csv(<span class="st">&quot;../data/data5-kalibracja.csv&quot;</span>, sep<span class="op">=</span><span class="st">&#39;;&#39;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>dane.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Lp  Przychod Wielkosc  Waga
 0   1        18        M    50
@@ -3379,11 +3675,11 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dane_z_pdf <span class="op">=</span> np.array([<span class="fl">52.275</span>, <span class="fl">50.5821</span>, <span class="fl">51.4286</span>, <span class="fl">50.5462</span>, <span class="fl">48.4301</span>, <span class="fl">39.9657</span>, </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">51.0054</span>, <span class="fl">54.3911</span>, <span class="fl">45.4675</span>, <span class="fl">49.7357</span>, <span class="fl">52.275</span>, <span class="fl">51.4286</span>, </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">45.0443</span>, <span class="fl">51.0054</span>, <span class="fl">51.0054</span>, <span class="fl">48.8893</span>, <span class="fl">52.275</span>, <span class="fl">52.275</span>, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">50.5462</span>, <span class="fl">51.4286</span>])</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>dane_z_pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dane_z_pdf <span class="op">=</span> np.array([<span class="fl">52.275</span>, <span class="fl">50.5821</span>, <span class="fl">51.4286</span>, <span class="fl">50.5462</span>, <span class="fl">48.4301</span>, <span class="fl">39.9657</span>, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">51.0054</span>, <span class="fl">54.3911</span>, <span class="fl">45.4675</span>, <span class="fl">49.7357</span>, <span class="fl">52.275</span>, <span class="fl">51.4286</span>, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">45.0443</span>, <span class="fl">51.0054</span>, <span class="fl">51.0054</span>, <span class="fl">48.8893</span>, <span class="fl">52.275</span>, <span class="fl">52.275</span>, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">50.5462</span>, <span class="fl">51.4286</span>])</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>dane_z_pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([52.275 , 50.5821, 51.4286, 50.5462, 48.4301, 39.9657, 51.0054,
        54.3911, 45.4675, 49.7357, 52.275 , 51.4286, 45.0443, 51.0054,
@@ -3391,11 +3687,11 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> dane[<span class="st">&#39;Waga&#39;</span>].values.astype(np.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> dane[<span class="st">&#39;Waga&#39;</span>].values.astype(np.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Xs <span class="op">=</span> pd.get_dummies(dane[[<span class="st">&#39;Przychod&#39;</span>, <span class="st">&#39;Wielkosc&#39;</span>]], drop_first<span class="op">=</span><span class="va">False</span>).values.astype(np.float64)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Xs[:<span class="dv">3</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Xs <span class="op">=</span> pd.get_dummies(dane[[<span class="st">&#39;Przychod&#39;</span>, <span class="st">&#39;Wielkosc&#39;</span>]], drop_first<span class="op">=</span><span class="va">False</span>).values.astype(np.float64)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Xs[:<span class="dv">3</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([[18.,  0.,  1.],
        [14.,  0.,  1.],
@@ -3403,23 +3699,23 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wartosci_globalne <span class="op">=</span> np.array([<span class="dv">19000</span>, <span class="dv">280</span>, <span class="dv">720</span>], dtype<span class="op">=</span>np.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wartosci_globalne <span class="op">=</span> np.array([<span class="dv">19000</span>, <span class="dv">280</span>, <span class="dv">720</span>], dtype<span class="op">=</span>np.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wartosci_est <span class="op">=</span> np.<span class="bu">sum</span>(Xs <span class="op">*</span> d[:, np.newaxis], axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>wartosci_est</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>wartosci_est <span class="op">=</span> np.<span class="bu">sum</span>(Xs <span class="op">*</span> d[:, np.newaxis], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>wartosci_est</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([18950.,   300.,   700.])</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>n_wierszy <span class="op">=</span> <span class="bu">len</span>(dane)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>n_wierszy <span class="op">=</span> <span class="bu">len</span>(dane)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>macierz_sum <span class="op">=</span> np.zeros((<span class="dv">3</span>, <span class="dv">3</span>), dtype<span class="op">=</span>np.float64)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_wierszy):</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    macierz_sum <span class="op">+=</span> d[i] <span class="op">*</span> np.outer(Xs[i,], Xs[i,])</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>macierz_sum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>macierz_sum <span class="op">=</span> np.zeros((<span class="dv">3</span>, <span class="dv">3</span>), dtype<span class="op">=</span>np.float64)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_wierszy):</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    macierz_sum <span class="op">+=</span> d[i] <span class="op">*</span> np.outer(Xs[i,], Xs[i,])</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>macierz_sum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([[4.0855e+05, 7.7500e+03, 1.1200e+04],
        [7.7500e+03, 3.0000e+02, 0.0000e+00],
@@ -3427,24 +3723,24 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> np.zeros(n_wierszy, dtype<span class="op">=</span>np.float64)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_wierszy):</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    w1[i] <span class="op">=</span> d[i] <span class="op">+</span> d[i] <span class="op">*</span> (wartosci_globalne <span class="op">-</span> wartosci_est).T <span class="op">@</span> np.linalg.solve(macierz_sum, Xs[i,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> np.zeros(n_wierszy, dtype<span class="op">=</span>np.float64)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_wierszy):</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    w1[i] <span class="op">=</span> d[i] <span class="op">+</span> d[i] <span class="op">*</span> (wartosci_globalne <span class="op">-</span> wartosci_est).T <span class="op">@</span> np.linalg.solve(macierz_sum, Xs[i,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">round</span>(w1, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">round</span>(w1, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([52.275, 50.582, 51.429, 50.546, 48.43 , 39.966, 51.005, 54.391,
        45.468, 49.736, 52.275, 51.429, 45.044, 51.005, 51.005, 48.889,
        52.275, 52.275, 50.546, 51.429])</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">round</span>(dane_z_pdf, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">round</span>(dane_z_pdf, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([52.275, 50.582, 51.429, 50.546, 48.43 , 39.966, 51.005, 54.391,
        45.468, 49.736, 52.275, 51.429, 45.044, 51.005, 51.005, 48.889,
        52.275, 52.275, 50.546, 51.429])</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>np.allclose(np.<span class="bu">round</span>(w1, <span class="dv">3</span>), np.<span class="bu">round</span>(dane_z_pdf, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>np.allclose(np.<span class="bu">round</span>(w1, <span class="dv">3</span>), np.<span class="bu">round</span>(dane_z_pdf, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
@@ -3460,12 +3756,12 @@ window.Quarto = {
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> d <span class="sc">+</span> d <span class="sc">*</span> <span class="fu">t</span>(wartosci_globalne <span class="sc">-</span> wartosci_est) <span class="sc">%*%</span> <span class="fu">solve</span>(<span class="fu">t</span>(d<span class="sc">*</span>Xs) <span class="sc">%*%</span> Xs) <span class="sc">%*%</span> <span class="fu">t</span>(Xs)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(w2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> d <span class="sc">+</span> d <span class="sc">*</span> <span class="fu">t</span>(wartosci_globalne <span class="sc">-</span> wartosci_est) <span class="sc">%*%</span> <span class="fu">solve</span>(<span class="fu">t</span>(d<span class="sc">*</span>Xs) <span class="sc">%*%</span> Xs) <span class="sc">%*%</span> <span class="fu">t</span>(Xs)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(w2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Zaokrąglam do 3 miejsc po przecinku aby porównać do slajdów.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">round</span>(w2,<span class="dv">3</span>),  <span class="fu">round</span>(dane_z_pdf,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">round</span>(w2,<span class="dv">3</span>),  <span class="fu">round</span>(dane_z_pdf,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -3473,10 +3769,10 @@ window.Quarto = {
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>temp_matrix <span class="op">=</span> np.linalg.solve((d[:, np.newaxis] <span class="op">*</span> Xs).T <span class="op">@</span> Xs, Xs.T)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> d <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> (wartosci_globalne <span class="op">-</span> wartosci_est) <span class="op">@</span> temp_matrix)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> w2.flatten()  <span class="co"># equivalent to as.numeric() in R</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>w2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>temp_matrix <span class="op">=</span> np.linalg.solve((d[:, np.newaxis] <span class="op">*</span> Xs).T <span class="op">@</span> Xs, Xs.T)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> d <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> (wartosci_globalne <span class="op">-</span> wartosci_est) <span class="op">@</span> temp_matrix)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> w2.flatten()  <span class="co"># equivalent to as.numeric() in R</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>w2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([52.27501123, 50.58213162, 51.42857143, 50.54618244, 48.43008293,
        39.96568487, 51.00535153, 54.39111075, 45.46754361, 49.73569182,
@@ -3485,7 +3781,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>np.allclose(np.<span class="bu">round</span>(w2, <span class="dv">3</span>), np.<span class="bu">round</span>(dane_z_pdf, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>np.allclose(np.<span class="bu">round</span>(w2, <span class="dv">3</span>), np.<span class="bu">round</span>(dane_z_pdf, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
@@ -3501,22 +3797,31 @@ window.Quarto = {
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sampling)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>wskaznik <span class="ot">&lt;-</span> <span class="fu">calib</span>(<span class="at">Xs =</span> Xs, <span class="at">d=</span>dane<span class="sc">$</span>Waga, <span class="at">method =</span> <span class="st">&quot;linear&quot;</span>, <span class="at">total =</span> wartosci_globalne)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> dane<span class="sc">$</span>Waga<span class="sc">*</span>wskaznik</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>wskaznik <span class="ot">&lt;-</span> <span class="fu">calib</span>(<span class="at">Xs =</span> Xs, </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">d=</span>dane<span class="sc">$</span>Waga, </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">method =</span> <span class="st">&quot;linear&quot;</span>, </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">total =</span> wartosci_globalne)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> dane<span class="sc">$</span>Waga<span class="sc">*</span>wskaznik</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Zaokrąglam do 3 miejsc po przecinku aby porównać do slajdów.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">round</span>(w2,<span class="dv">3</span>),  <span class="fu">round</span>(dane_z_pdf,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">round</span>(w2,<span class="dv">3</span>),  <span class="fu">round</span>(dane_z_pdf,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>totals <span class="op">=</span> {<span class="st">&quot;Przychod&quot;</span>: <span class="dv">19000</span>, <span class="st">&quot;WielkoscL&quot;</span>: <span class="dv">280</span>, <span class="st">&quot;WielkoscM&quot;</span>: <span class="dv">720</span>}</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>dane[<span class="st">&quot;calib_weight&quot;</span>] <span class="op">=</span> SampleWeight().calibrate(</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    dane[<span class="st">&quot;Waga&quot;</span>],  <span class="co">## waga pierwotna (d)</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    dane[[<span class="st">&#39;Przychod&#39;</span>, <span class="st">&#39;WielkoscL&#39;</span>, <span class="st">&quot;WielkoscM&quot;</span>]],  <span class="co">## zmienne pomocnicze </span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    totals <span class="co">## wartosci globalne</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>dane.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 </div>
