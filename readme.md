@@ -65,5 +65,5 @@
 + Kalibracja
   + R: `survey`, `sampling`, `laeken`
   + Python: `samplics`
-  + [Notatnik]()
+  + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/7-kalibracja-wstep.html)
   + Dane na zajęcia [data5-kalibracja.csv](data/data5-kalibracja.csv)
