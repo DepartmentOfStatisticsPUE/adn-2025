@@ -9,6 +9,10 @@
 + Shiny:
   + [Wizualizacja imputacji danych 1](https://berenz.shinyapps.io/missing-data-class1/)
 
++ Zaliczenie:
+  + szablon w quarto: [plik.qmd](), [wygląd raportu]()
+  + [szablon w jupyter notebook (colab)](https://colab.research.google.com/drive/1cfBdAJQv31UdpYDGj7wbs3dDzeCcbBAR?usp=sharing)
+  
 ## Materiały na zajęcia
 
 ### 1. Problematyka braków danych

@@ -1,0 +1,44 @@
+---
+title: "Raport z projektu zaliczeniowego: Analiza Danych Niekompletnych (2024)"
+author: "Imie i nazwisko (NIU)"
+format: 
+  html:
+    self-contained: true
+    number-sections: true
+    toc: true
+    toc-title: "Spis treści"
+editor: source
+---
+
+
+# Wstęp
+
+Ogólna informacja o zastosowanym podejściu i wyniku (z Kaggle wraz z nickiem). Streszczenie na 3-4 zdania. Akceptowany format: `qmd` i `ipynb` (preferowany colab). Proszę opisać również jak korzystali Państwo z LLMów na potrzeby tego projektu (jeżeli były wykorzystane).
+
+Plik proszę nazwać: `NIU_nazwisko_imie`. 
+
+# Metodyka
+
+Opis zaproponowanego podejścia. Proszę opisać do dokładnie Pan/i zrobiła w projekcie. Jakie podejście zastosowano, jako metody wykorzystano i z jakich narzędzi korzystano. Zwięzły opis na 3-4 akapity (po 5-8 zdań każdy). 
+
+# Wyniki
+
+Proszę opisać uzyskane wyniki. Można pokazać jak zmieniały się wyniki na kaggle i w jaki sposób wybrano ostateczny model. Proszę podać ile razy sprawdzano zaproponowane rozwiazania. 
+
+# Podsumowanie
+
+Proszę krótko podsumować projekt, najpisać czego się Państwo nauczyli w trakcie tego projektu i czy imputacja danych faktycznie pomogła (czy moze nie?). Proszę podsumować Państwa doświadczenie z wykorzystania LLMów (o ile było) na potrzeby tego projektu.
+
+# Kody do odtworzenia wyników
+
+W tym miejscu powinien znajdować się kod, który po ustawnieniu ścieżki do pliku `train.csv` i `test.csv` będę mógł w CAŁOŚCI uruchiomić (bez błędów). Kod powinien być skomentowany i możliwy do uruchomienia. PROSZĘ SPRAWDZIĆ WSZYSTKO PRZED WYSŁANIEM ROZWIĄZAŃ! 
+
+## Proponowana struktura
+
+Sugerowana struktura sekcji z kodami
+
++ (instalacja) wczytywanie pakietów 
++ wczytanie danych
++ przetwarzanie
++ predykcja
++ zapis wyniku do CSV
