@@ -1,0 +1,135 @@
+---
+title: "6. Kalibracja -- wstęp"
+format: 
+  html:
+    self-contained: true
+    number-sections: true
+    toc: true
+    toc-title: "Spis treści"
+editor: source
+---
+
+# Wczytanie potrzebnych pakietów
+
+::: panel-tabset
+## R
+
+```{r pakiety, message=F, warning=F}
+library(survey)
+library(readxl)
+```
+
+
+## Python
+
+```{python moduly}
+import numpy as np
+import pandas as pd
+# from samplics.weighting import SampleWeight ## do naprawienia
+```
+
+:::
+
+
+# Kalibracja 
+
+W tym przykładie pokażę jak można wykorzystac pakiet `survey` do kalibracji uwzględniajacej różne zmienne pomocnicze i ich kombinacje.
+
+::: panel-tabset
+## R
+
+Wczytujemy przykładowe dane
+
+```{r}
+gosp <- read_excel("../data/gospodarstwa-zajecia.xlsx")
+gosp <- transform(gosp, 
+                  klm = as.factor(klm),
+                  woj = as.factor(woj))
+head(gosp)
+```
+
+W dwóch zmiennych mamy braki danych
+
+```{r}
+summary(gosp[, c("dochg", "wydg")])
+```
+
+W związku z tym musimy zastosować kalibrację ale mamy pewne informacje o zmiennych pomocniczych dla wszystkich zmiennych. Na potrzeby tego ćwiczenia pokaże jak skalibrować wagi wg zmiennej klm, woj i interakcji. Zobaczymy tez jak zmieniają się wyniki
+
+Tworzymy zbiór danych z pełnymi odpowiedziami
+
+```{r}
+gosp_resp <- gosp[complete.cases(gosp),]
+```
+
+Tworzymy informacje o wartościach globalnych zmiennych pomocniczych
+
+```{r}
+pop_klm <- xtabs(~klm, gosp)
+pop_woj <- xtabs(~woj, gosp)
+pop_klm_woj <- xtabs(~klm+woj, gosp)
+```
+
+Tworzymy obiekt svydesign
+
+```{r}
+gosp_resp_svy <- svydesign(ids=~1, data=gosp_resp)
+```
+
+Jeżeli nie podamy domyślnie tworzone są wagi =1
+
+```{r}
+table(weights(gosp_resp_svy))
+```
+
+Przeprowadzamy kalibrację wg klm
+
+```{r}
+gosp_resp_svy_klm <- calibrate(design = gosp_resp_svy, 
+                               formula = list(~klm),
+                               population = list(pop_klm))
+```
+
+Przeprowadzamy kalibrację wg woj
+
+```{r}
+gosp_resp_svy_woj <- calibrate(design = gosp_resp_svy, 
+                               formula = list(~woj),
+                               population = list(pop_woj))
+```
+
+Przeprowadzamy kalibrację wg klm i woj ale bez interakcji
+
+```{r}
+gosp_resp_svy_klm_woj_noint <- calibrate(design = gosp_resp_svy, 
+                                         formula = list(~klm, ~woj),
+                                         population = list(pop_klm, pop_woj))
+```
+
+
+Przeprowadzamy kalibrację wg klm i woj z interakcją
+
+```{r}
+gosp_resp_svy_klm_woj_int <- calibrate(design = gosp_resp_svy, 
+                                       formula = list(~klm+woj),
+                                       population = list(pop_klm_woj),
+                                       calfun = "raking") ## przy liniowej jest błąd
+```
+
+Porównanmy oszacowania
+
+```{r}
+svymean(~dochg+wydg+los, gosp_resp_svy)
+svymean(~dochg+wydg+los, gosp_resp_svy_klm)
+svymean(~dochg+wydg+los, gosp_resp_svy_woj)
+svymean(~dochg+wydg+los, gosp_resp_svy_klm_woj_noint)
+svymean(~dochg+wydg+los, gosp_resp_svy_klm_woj_int)
+```
+
+
+## Python
+
+TBA
+
+
+:::
