@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7. Kalibracja – case study</title>
+<title>7. Propensity score adjustment</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3085,7 +3085,7 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#wczytanie-potrzebnych-pakietów" id="toc-wczytanie-potrzebnych-pakietów" class="nav-link active" data-scroll-target="#wczytanie-potrzebnych-pakietów"><span class="header-section-number">1</span> Wczytanie potrzebnych pakietów</a></li>
-  <li><a href="#kalibracja" id="toc-kalibracja" class="nav-link" data-scroll-target="#kalibracja"><span class="header-section-number">2</span> Kalibracja</a></li>
+  <li><a href="#ważenie-przez-odwrotność-metoda-podstawowa" id="toc-ważenie-przez-odwrotność-metoda-podstawowa" class="nav-link" data-scroll-target="#ważenie-przez-odwrotność-metoda-podstawowa"><span class="header-section-number">2</span> Ważenie przez odwrotność – metoda podstawowa</a></li>
   </ul>
 </nav>
 </div>
@@ -3093,7 +3093,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">7. Kalibracja – case study</h1>
+<h1 class="title">7. Propensity score adjustment</h1>
 </div>
 
 
@@ -3118,7 +3118,7 @@ vertical-align: -.125em;
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -3427,9 +3427,9 @@ AttributeError: _ARRAY_API not found</code></pre>
 </div>
 </div>
 </section>
-<section id="kalibracja" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Kalibracja</h1>
-<p>W tym przykładie pokażę jak można wykorzystac pakiet <code>survey</code> do kalibracji uwzględniajacej różne zmienne pomocnicze i ich kombinacje.</p>
+<section id="ważenie-przez-odwrotność-metoda-podstawowa" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Ważenie przez odwrotność – metoda podstawowa</h1>
+<p>Wykorzystamy wyłącznie regresję logistyczną bez i z LASSO.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href>R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href>Python</a></li></ul>
 <div class="tab-content">
@@ -3465,95 +3465,44 @@ AttributeError: _ARRAY_API not found</code></pre>
  NA&#39;s   :6462     NA&#39;s   :6462     </code></pre>
 </div>
 </div>
-<p>W związku z tym musimy zastosować kalibrację ale mamy pewne informacje o zmiennych pomocniczych dla wszystkich zmiennych. Na potrzeby tego ćwiczenia pokaże jak skalibrować wagi wg zmiennej klm, woj i interakcji. Zobaczymy tez jak zmieniają się wyniki</p>
-<p>Tworzymy zbiór danych z pełnymi odpowiedziami</p>
+<p>Zmienna określająda odpowiedź</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gosp_resp <span class="ot">&lt;-</span> gosp[<span class="fu">complete.cases</span>(gosp),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gosp<span class="sc">$</span>R <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(gosp<span class="sc">$</span>dochg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Tworzymy informacje o wartościach globalnych zmiennych pomocniczych</p>
+<p>Model podstawowy</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pop_klm <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>klm, gosp)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pop_woj <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>woj, gosp)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pop_klm_woj <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>klm<span class="sc">+</span>woj, gosp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Tworzymy obiekt svydesign</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gosp_resp_svy <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids=</span><span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>gosp_resp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in svydesign.default(ids = ~1, data = gosp_resp): No weights or
-probabilities supplied, assuming equal probability</code></pre>
-</div>
-</div>
-<p>Jeżeli nie podamy domyślnie tworzone są wagi =1</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">weights</span>(gosp_resp_svy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(R <span class="sc">~</span> klm <span class="sc">+</span> woj, <span class="at">data =</span> gosp, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">predict</span>(m1, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-    1 
-26025 </code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.05831 0.55291 0.98238 0.80109 0.99974 0.99989 </code></pre>
 </div>
 </div>
-<p>Przeprowadzamy kalibrację wg klm</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gosp_resp_svy_klm <span class="ot">&lt;-</span> <span class="fu">calibrate</span>(<span class="at">design =</span> gosp_resp_svy, </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">formula =</span> <span class="fu">list</span>(<span class="sc">~</span>klm),</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">population =</span> <span class="fu">list</span>(pop_klm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gosp<span class="sc">$</span>w_rho <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">predict</span>(m1, gosp, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Przeprowadzamy kalibrację wg woj</p>
+<p>Porównamy szacunki</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gosp_resp_svy_woj <span class="ot">&lt;-</span> <span class="fu">calibrate</span>(<span class="at">design =</span> gosp_resp_svy, </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">formula =</span> <span class="fu">list</span>(<span class="sc">~</span>woj),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">population =</span> <span class="fu">list</span>(pop_woj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">mean</span>(gosp<span class="sc">$</span>dochg, <span class="at">na.rm=</span>T), <span class="fu">weighted.mean</span>(gosp<span class="sc">$</span>dochg, gosp<span class="sc">$</span>w_rho, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2031.606 2138.389</code></pre>
 </div>
-<p>Przeprowadzamy kalibrację wg klm i woj ale bez interakcji</p>
+</div>
+<p>Teraz LASSO</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gosp_resp_svy_klm_woj_noint <span class="ot">&lt;-</span> <span class="fu">calibrate</span>(<span class="at">design =</span> gosp_resp_svy, </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">formula =</span> <span class="fu">list</span>(<span class="sc">~</span>klm, <span class="sc">~</span>woj),</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">population =</span> <span class="fu">list</span>(pop_klm, pop_woj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(<span class="at">x =</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> klm <span class="sc">+</span> woj, gosp), <span class="at">y =</span> gosp<span class="sc">$</span>R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Przeprowadzamy kalibrację wg klm i woj z interakcją</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gosp_resp_svy_klm_woj_int <span class="ot">&lt;-</span> <span class="fu">calibrate</span>(<span class="at">design =</span> gosp_resp_svy, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">formula =</span> <span class="fu">list</span>(<span class="sc">~</span>klm<span class="sc">+</span>woj),</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">population =</span> <span class="fu">list</span>(pop_klm_woj),</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">calfun =</span> <span class="st">&quot;raking&quot;</span>) <span class="do">## przy liniowej jest błąd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gosp<span class="sc">$</span>w_rho_lasso <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">predict</span>(m2, <span class="at">newx =</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> klm <span class="sc">+</span> woj, gosp), <span class="at">type=</span><span class="st">&quot;response&quot;</span>, <span class="at">s =</span> m2<span class="sc">$</span>lambda.min))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Porównanmy oszacowania</p>
+<p>Porównamy szacunki</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>dochg<span class="sc">+</span>wydg<span class="sc">+</span>los, gosp_resp_svy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">bez =</span> <span class="fu">mean</span>(gosp<span class="sc">$</span>dochg, <span class="at">na.rm=</span>T), </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">glm =</span> <span class="fu">weighted.mean</span>(gosp<span class="sc">$</span>dochg, gosp<span class="sc">$</span>w_rho, <span class="at">na.rm=</span>T),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lasso =</span> <span class="fu">weighted.mean</span>(gosp<span class="sc">$</span>dochg, gosp<span class="sc">$</span>w_rho_lasso, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           mean     SE
-dochg 2031.6063 9.2971
-wydg  1930.9257 8.8343
-los      3.1788 0.0100</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>dochg<span class="sc">+</span>wydg<span class="sc">+</span>los, gosp_resp_svy_klm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           mean      SE
-dochg 2153.2401 17.0653
-wydg  2041.1689 14.9992
-los      3.0675  0.0118</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>dochg<span class="sc">+</span>wydg<span class="sc">+</span>los, gosp_resp_svy_woj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           mean     SE
-dochg 2037.3109 9.6123
-wydg  1932.4891 8.9357
-los      3.1754 0.0100</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>dochg<span class="sc">+</span>wydg<span class="sc">+</span>los, gosp_resp_svy_klm_woj_noint)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           mean      SE
-dochg 2149.9614 16.9378
-wydg  2037.3378 14.9281
-los      3.0636  0.0118</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>dochg<span class="sc">+</span>wydg<span class="sc">+</span>los, gosp_resp_svy_klm_woj_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           mean      SE
-dochg 2140.9652 16.7258
-wydg  2027.6950 14.7161
-los      3.0644  0.0124</code></pre>
+<pre><code>     bez      glm    lasso 
+2031.606 2138.389 2006.049 </code></pre>
 </div>
 </div>
 </div>

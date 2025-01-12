@@ -1,5 +1,5 @@
 ---
-title: "6. Kalibracja -- wstęp"
+title: "7. Kalibracja -- case study"
 format: 
   html:
     self-contained: true
@@ -15,8 +15,8 @@ editor: source
 ## R
 
 ```{r pakiety, message=F, warning=F}
-library(survey)
 library(readxl)
+library(survey)
 ```
 
 

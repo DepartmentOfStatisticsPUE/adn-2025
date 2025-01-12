@@ -82,3 +82,10 @@
   
 
 ### 6. Ważenie przez odwrotność prawdopodobieństwa odpowiedzi
+
++ PSW
+  + R: `stats`, `glmnet`
+  + Python: TBA
+  + [Notatnik](https://htmlpreview.github.io/?https://raw.githubusercontent.com/DepartmentOfStatisticsPUE/adn-2025/refs/heads/main/codes/9-propensity-score.html)
+  + Dane na zajęcia [gospodarstwa-zajecia.xlsx](data/gospodarstwa-zajecia.xlsx)
+  

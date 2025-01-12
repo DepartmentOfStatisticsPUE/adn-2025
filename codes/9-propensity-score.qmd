@@ -1,0 +1,104 @@
+---
+title: "7. Propensity score adjustment"
+format: 
+  html:
+    self-contained: true
+    number-sections: true
+    toc: true
+    toc-title: "Spis treści"
+editor: source
+---
+
+# Wczytanie potrzebnych pakietów
+
+::: panel-tabset
+## R
+
+```{r pakiety, message=F, warning=F}
+library(readxl)
+library(glmnet)
+```
+
+
+## Python
+
+```{python moduly}
+import numpy as np
+import pandas as pd
+# from samplics.weighting import SampleWeight ## do naprawienia
+```
+
+:::
+
+
+# Ważenie przez odwrotność -- metoda podstawowa 
+
+Wykorzystamy wyłącznie regresję logistyczną bez i z LASSO.
+
+::: panel-tabset
+## R
+
+Wczytujemy przykładowe dane
+
+```{r}
+gosp <- read_excel("../data/gospodarstwa-zajecia.xlsx")
+gosp <- transform(gosp, 
+                  klm = as.factor(klm),
+                  woj = as.factor(woj))
+head(gosp)
+```
+
+W dwóch zmiennych mamy braki danych
+
+```{r}
+summary(gosp[, c("dochg", "wydg")])
+```
+
+Zmienna określająda odpowiedź
+
+```{r}
+gosp$R <- !is.na(gosp$dochg)
+```
+
+Model podstawowy
+
+```{r}
+m1 <- glm(R ~ klm + woj, data = gosp, family = binomial())
+summary(predict(m1, type = "response"))
+```
+
+```{r}
+gosp$w_rho <- 1/predict(m1, gosp, type="response")
+```
+
+Porównamy szacunki
+
+```{r}
+c(mean(gosp$dochg, na.rm=T), weighted.mean(gosp$dochg, gosp$w_rho, na.rm=T))
+```
+
+Teraz LASSO
+
+```{r}
+m2 <- cv.glmnet(x = model.matrix(~ klm + woj, gosp), y = gosp$R)
+```
+
+```{r}
+gosp$w_rho_lasso <- as.numeric(predict(m2, newx = model.matrix(~ klm + woj, gosp), type="response", s = m2$lambda.min))
+```
+
+Porównamy szacunki
+
+```{r}
+c(bez = mean(gosp$dochg, na.rm=T), 
+  glm = weighted.mean(gosp$dochg, gosp$w_rho, na.rm=T),
+  lasso = weighted.mean(gosp$dochg, gosp$w_rho_lasso, na.rm=T))
+```
+
+
+## Python
+
+TBA
+
+
+:::
