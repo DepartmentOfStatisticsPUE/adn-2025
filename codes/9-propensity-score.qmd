@@ -80,11 +80,11 @@ c(mean(gosp$dochg, na.rm=T), weighted.mean(gosp$dochg, gosp$w_rho, na.rm=T))
 Teraz LASSO
 
 ```{r}
-m2 <- cv.glmnet(x = model.matrix(~ klm + woj, gosp), y = gosp$R)
+m2 <- cv.glmnet(x = model.matrix(~ klm + woj, gosp), y = gosp$R, family = "binomial")
 ```
 
 ```{r}
-gosp$w_rho_lasso <- as.numeric(predict(m2, newx = model.matrix(~ klm + woj, gosp), type="response", s = m2$lambda.min))
+gosp$w_rho_lasso <- 1/as.numeric(predict(m2, newx = model.matrix(~ klm + woj, gosp), type="response", s = m2$lambda.min))
 ```
 
 Porównamy szacunki

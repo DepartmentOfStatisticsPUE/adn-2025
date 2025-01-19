@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7. Propensity score adjustment</title>
+<title>8. Estymacja wariancji</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3085,7 +3085,9 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#wczytanie-potrzebnych-pakietów" id="toc-wczytanie-potrzebnych-pakietów" class="nav-link active" data-scroll-target="#wczytanie-potrzebnych-pakietów"><span class="header-section-number">1</span> Wczytanie potrzebnych pakietów</a></li>
-  <li><a href="#ważenie-przez-odwrotność-metoda-podstawowa" id="toc-ważenie-przez-odwrotność-metoda-podstawowa" class="nav-link" data-scroll-target="#ważenie-przez-odwrotność-metoda-podstawowa"><span class="header-section-number">2</span> Ważenie przez odwrotność – metoda podstawowa</a></li>
+  <li><a href="#estymacja-wariancji-z-pakietem-mice" id="toc-estymacja-wariancji-z-pakietem-mice" class="nav-link" data-scroll-target="#estymacja-wariancji-z-pakietem-mice"><span class="header-section-number">2</span> Estymacja wariancji z pakietem <code>mice</code></a></li>
+  <li><a href="#bootstrap-przykłady" id="toc-bootstrap-przykłady" class="nav-link" data-scroll-target="#bootstrap-przykłady"><span class="header-section-number">3</span> Bootstrap przykłady</a></li>
+  <li><a href="#estymacja-wariancji-z-wykorzystaniem-bootstrap" id="toc-estymacja-wariancji-z-wykorzystaniem-bootstrap" class="nav-link" data-scroll-target="#estymacja-wariancji-z-wykorzystaniem-bootstrap"><span class="header-section-number">4</span> Estymacja wariancji z wykorzystaniem bootstrap</a></li>
   </ul>
 </nav>
 </div>
@@ -3093,7 +3095,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">7. Propensity score adjustment</h1>
+<h1 class="title">8. Estymacja wariancji</h1>
 </div>
 
 
@@ -3118,7 +3120,10 @@ vertical-align: -.125em;
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simputation)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -3427,8 +3432,8 @@ AttributeError: _ARRAY_API not found</code></pre>
 </div>
 </div>
 </section>
-<section id="ważenie-przez-odwrotność-metoda-podstawowa" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Ważenie przez odwrotność – metoda podstawowa</h1>
+<section id="estymacja-wariancji-z-pakietem-mice" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Estymacja wariancji z pakietem <code>mice</code></h1>
 <p>Wykorzystamy wyłącznie regresję logistyczną bez i z LASSO.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href>R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href>Python</a></li></ul>
@@ -3453,60 +3458,486 @@ AttributeError: _ARRAY_API not found</code></pre>
 </div>
 <p>W dwóch zmiennych mamy braki danych</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gosp[, <span class="fu">c</span>(<span class="st">&quot;dochg&quot;</span>, <span class="st">&quot;wydg&quot;</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gosp[, <span class="fu">c</span>(<span class="st">&quot;dochg&quot;</span>, <span class="st">&quot;wydg&quot;</span>, <span class="st">&quot;los&quot;</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     dochg             wydg        
- Min.   :-21249   Min.   :   73.9  
- 1st Qu.:  1168   1st Qu.: 1105.9  
- Median :  1750   Median : 1623.2  
- Mean   :  2032   Mean   : 1930.9  
- 3rd Qu.:  2536   3rd Qu.: 2359.6  
- Max.   : 50152   Max.   :31927.6  
- NA&#39;s   :6462     NA&#39;s   :6462     </code></pre>
+<pre><code>     dochg             wydg              los        
+ Min.   :-21249   Min.   :   73.9   Min.   : 1.000  
+ 1st Qu.:  1168   1st Qu.: 1105.9   1st Qu.: 2.000  
+ Median :  1750   Median : 1623.2   Median : 3.000  
+ Mean   :  2032   Mean   : 1930.9   Mean   : 3.179  
+ 3rd Qu.:  2536   3rd Qu.: 2359.6   3rd Qu.: 4.000  
+ Max.   : 50152   Max.   :31927.6   Max.   :14.000  
+ NA&#39;s   :6462     NA&#39;s   :6462      NA&#39;s   :6462    </code></pre>
 </div>
 </div>
-<p>Zmienna określająda odpowiedź</p>
+<p>Imputacja metodą PMM</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gosp<span class="sc">$</span>R <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(gosp<span class="sc">$</span>dochg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Model podstawowy</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(R <span class="sc">~</span> klm <span class="sc">+</span> woj, <span class="at">data =</span> gosp, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">predict</span>(m1, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gosp_imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(gosp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-0.05831 0.55291 0.98238 0.80109 0.99974 0.99989 </code></pre>
+<pre><code>
+ iter imp variable
+  1   1  los  dochg  wydg
+  1   2  los  dochg  wydg
+  1   3  los  dochg  wydg
+  1   4  los  dochg  wydg
+  1   5  los  dochg  wydg
+  2   1  los  dochg  wydg
+  2   2  los  dochg  wydg
+  2   3  los  dochg  wydg
+  2   4  los  dochg  wydg
+  2   5  los  dochg  wydg
+  3   1  los  dochg  wydg
+  3   2  los  dochg  wydg
+  3   3  los  dochg  wydg
+  3   4  los  dochg  wydg
+  3   5  los  dochg  wydg
+  4   1  los  dochg  wydg
+  4   2  los  dochg  wydg
+  4   3  los  dochg  wydg
+  4   4  los  dochg  wydg
+  4   5  los  dochg  wydg
+  5   1  los  dochg  wydg
+  5   2  los  dochg  wydg
+  5   3  los  dochg  wydg
+  5   4  los  dochg  wydg
+  5   5  los  dochg  wydg</code></pre>
 </div>
 </div>
+<p>Model bez uwzględnienia imputacji – modelujemy elastyczność dochodową wydatków (na jednego członka gospodarstwa domowego).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gosp<span class="sc">$</span>w_rho <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">predict</span>(m1, gosp, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>((wydg<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>los) <span class="sc">~</span> <span class="fu">log</span>((dochg<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>los), <span class="at">data =</span> gosp, <span class="at">subset =</span> dochg <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in log((dochg + 1)/los): NaNs produced</code></pre>
 </div>
-<p>Porównamy szacunki</p>
+</div>
+<p>Z uwzgędnieniem imputacji</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">mean</span>(gosp<span class="sc">$</span>dochg, <span class="at">na.rm=</span>T), <span class="fu">weighted.mean</span>(gosp<span class="sc">$</span>dochg, gosp<span class="sc">$</span>w_rho, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2031.606 2138.389</code></pre>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">with</span>(gosp_imp, <span class="fu">lm</span>(<span class="fu">log</span>((wydg<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>los) <span class="sc">~</span> <span class="fu">log</span>((dochg<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>los), <span class="at">subset =</span> dochg <span class="sc">&gt;</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in log((dochg + 1)/los): NaNs produced
+Warning in log((dochg + 1)/los): NaNs produced
+Warning in log((dochg + 1)/los): NaNs produced
+Warning in log((dochg + 1)/los): NaNs produced
+Warning in log((dochg + 1)/los): NaNs produced</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>m2_pool <span class="ot">&lt;-</span> <span class="fu">pool</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Teraz LASSO</p>
+<p>Podsumowanie wyników</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(<span class="at">x =</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> klm <span class="sc">+</span> woj, gosp), <span class="at">y =</span> gosp<span class="sc">$</span>R, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gosp<span class="sc">$</span>w_rho_lasso <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">as.numeric</span>(<span class="fu">predict</span>(m2, <span class="at">newx =</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> klm <span class="sc">+</span> woj, gosp), <span class="at">type=</span><span class="st">&quot;response&quot;</span>, <span class="at">s =</span> m2<span class="sc">$</span>lambda.min))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Porównamy szacunki</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">bez =</span> <span class="fu">mean</span>(gosp<span class="sc">$</span>dochg, <span class="at">na.rm=</span>T), </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">glm =</span> <span class="fu">weighted.mean</span>(gosp<span class="sc">$</span>dochg, gosp<span class="sc">$</span>w_rho, <span class="at">na.rm=</span>T),</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lasso =</span> <span class="fu">weighted.mean</span>(gosp<span class="sc">$</span>dochg, gosp<span class="sc">$</span>w_rho_lasso, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     bez      glm    lasso 
-2031.606 2138.389 2137.903 </code></pre>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">&quot;Bez imp&quot;</span><span class="ot">=</span>m1, <span class="st">&quot;Po imp&quot;</span><span class="ot">=</span>m2_pool), </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">conf_level =</span> <span class="fl">0.95</span>, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">statistic =</span> <span class="fu">c</span>(<span class="st">&quot;conf.int&quot;</span>, <span class="st">&quot;std.error&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+
+      function styleCell_eigaqy4kzbqlglb90gbt(i, j, css_id) {
+          var table = document.getElementById("tinytable_eigaqy4kzbqlglb90gbt");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_eigaqy4kzbqlglb90gbt');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_eigaqy4kzbqlglb90gbt(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_eigaqy4kzbqlglb90gbt");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 10, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 14, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 },  ], css_id: 'tinytable_css_wk60z0h76r83yu9qql6l',}, 
+          { positions: [ { i: 6, j: 0 },  ], css_id: 'tinytable_css_qge2fddk4jwz03dgmaq3',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_ph38qviqcc60s09jwzhc',}, 
+          { positions: [ { i: 15, j: 0 },  ], css_id: 'tinytable_css_mwlaoggmdjlyehxkl3wq',}, 
+          { positions: [ { i: 15, j: 1 }, { i: 15, j: 2 },  ], css_id: 'tinytable_css_iw9ll4leyykao0lnpay3',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 3, j: 2 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 12, j: 2 }, { i: 3, j: 1 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 7, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 14, j: 2 }, { i: 13, j: 2 },  ], css_id: 'tinytable_css_hlyzrcmx5bp1nogbfnh6',}, 
+          { positions: [ { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_hb12qlnu71go2a1ngxc1',}, 
+          { positions: [ { i: 6, j: 1 }, { i: 6, j: 2 },  ], css_id: 'tinytable_css_1ly1fnz72dtz45pqwngy',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_eigaqy4kzbqlglb90gbt(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+
+.table td.tinytable_css_wk60z0h76r83yu9qql6l, .table th.tinytable_css_wk60z0h76r83yu9qql6l { text-align: left; }
+.table td.tinytable_css_qge2fddk4jwz03dgmaq3, .table th.tinytable_css_qge2fddk4jwz03dgmaq3 { text-align: left; border-bottom: solid black 0.05em; }
+.table td.tinytable_css_ph38qviqcc60s09jwzhc, .table th.tinytable_css_ph38qviqcc60s09jwzhc { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+.table td.tinytable_css_mwlaoggmdjlyehxkl3wq, .table th.tinytable_css_mwlaoggmdjlyehxkl3wq { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+.table td.tinytable_css_iw9ll4leyykao0lnpay3, .table th.tinytable_css_iw9ll4leyykao0lnpay3 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+.table td.tinytable_css_hlyzrcmx5bp1nogbfnh6, .table th.tinytable_css_hlyzrcmx5bp1nogbfnh6 { text-align: center; }
+.table td.tinytable_css_hb12qlnu71go2a1ngxc1, .table th.tinytable_css_hb12qlnu71go2a1ngxc1 { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+.table td.tinytable_css_1ly1fnz72dtz45pqwngy, .table th.tinytable_css_1ly1fnz72dtz45pqwngy { text-align: center; border-bottom: solid black 0.05em; }
+</style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_eigaqy4kzbqlglb90gbt" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Bez imp</th>
+                <th scope="col">Po imp</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)         </td>
+                  <td>1.436         </td>
+                  <td>1.298         </td>
+                </tr>
+                <tr>
+                  <td>                    </td>
+                  <td>[1.386, 1.485]</td>
+                  <td>[1.236, 1.361]</td>
+                </tr>
+                <tr>
+                  <td>                    </td>
+                  <td>(0.025)       </td>
+                  <td>(0.030)       </td>
+                </tr>
+                <tr>
+                  <td>log((dochg + 1)/los)</td>
+                  <td>0.768         </td>
+                  <td>0.792         </td>
+                </tr>
+                <tr>
+                  <td>                    </td>
+                  <td>[0.760, 0.775]</td>
+                  <td>[0.782, 0.803]</td>
+                </tr>
+                <tr>
+                  <td>                    </td>
+                  <td>(0.004)       </td>
+                  <td>(0.005)       </td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.            </td>
+                  <td>25876         </td>
+                  <td>32301         </td>
+                </tr>
+                <tr>
+                  <td>Num.Imp.            </td>
+                  <td>              </td>
+                  <td>5             </td>
+                </tr>
+                <tr>
+                  <td>R2                  </td>
+                  <td>0.602         </td>
+                  <td>0.637         </td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.             </td>
+                  <td>0.602         </td>
+                  <td>0.637         </td>
+                </tr>
+                <tr>
+                  <td>AIC                 </td>
+                  <td>25072.2       </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>BIC                 </td>
+                  <td>25096.7       </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.            </td>
+                  <td>-12533.088    </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>F                   </td>
+                  <td>39057.048     </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>RMSE                </td>
+                  <td>0.39          </td>
+                  <td>              </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>TBA</p>
+</div>
+</div>
+</div>
+</section>
+<section id="bootstrap-przykłady" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Bootstrap przykłady</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href>R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href>Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generujemy dane</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Funkcja do bootstrapu średniej</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>bootstrap_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">B =</span> <span class="dv">1000</span>) {</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(data)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  boot_means <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Losowanie ze zwracaniem</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    boot_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(data, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    boot_means[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(boot_sample)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Obliczamy błąd standardowy i przedziały ufności</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  se <span class="ot">&lt;-</span> <span class="fu">sd</span>(boot_means)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  ci <span class="ot">&lt;-</span> <span class="fu">quantile</span>(boot_means, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(boot_means),</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> se,</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci =</span> ci</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>results_mean <span class="ot">&lt;-</span> <span class="fu">bootstrap_mean</span>(x)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>results_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$mean
+[1] 10.18485
+
+$se
+[1] 0.18092
+
+$ci
+     2.5%     97.5% 
+ 9.845638 10.538562 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Funkcja pomocnicza dla pakietu boot</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>mean_func <span class="ot">&lt;-</span> <span class="cf">function</span>(data, indices) {</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(data[indices])</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap z pakietem boot</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>boot_results_mean <span class="ot">&lt;-</span> <span class="fu">boot</span>(x, mean_func, <span class="at">R =</span> <span class="dv">1000</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>boot_ci_mean <span class="ot">&lt;-</span> <span class="fu">boot.ci</span>(boot_results_mean, <span class="at">type =</span> <span class="st">&quot;perc&quot;</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>boot_results_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ORDINARY NONPARAMETRIC BOOTSTRAP
+
+
+Call:
+boot(data = x, statistic = mean_func, R = 1000)
+
+
+Bootstrap Statistics :
+    original      bias    std. error
+t1* 10.18081 0.004150389   0.1775819</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>boot_ci_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+Based on 1000 bootstrap replicates
+
+CALL : 
+boot.ci(boot.out = boot_results_mean, type = &quot;perc&quot;)
+
+Intervals : 
+Level     Percentile     
+95%   ( 9.85, 10.54 )  
+Calculations and Intervals on Original Scale</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Bootstrap dla regresji ----</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generujemy dane do regresji</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A. Implementacja bez pakietu boot</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>bootstrap_regression <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">B =</span> <span class="dv">1000</span>) {</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(data)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  boot_coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Losowanie indeksów</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    boot_data <span class="ot">&lt;-</span> data[indices,]</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dopasowanie modelu</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    boot_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> boot_data)</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    boot_coefs[i,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(boot_model)</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Obliczamy błędy standardowe i przedziały ufności</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>  ses <span class="ot">&lt;-</span> <span class="fu">apply</span>(boot_coefs, <span class="dv">2</span>, sd)</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  cis <span class="ot">&lt;-</span> <span class="fu">apply</span>(boot_coefs, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">coefs =</span> <span class="fu">colMeans</span>(boot_coefs),</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">ses =</span> ses,</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">cis =</span> cis</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Wykonujemy bootstrap dla regresji</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>results_reg <span class="ot">&lt;-</span> <span class="fu">bootstrap_regression</span>(data)</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>results_reg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$coefs
+[1] 2.071756 2.856162
+
+$ses
+[1] 0.09388849 0.09204646
+
+$cis
+          [,1]     [,2]
+2.5%  1.892874 2.693094
+97.5% 2.263002 3.053329</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>reg_func <span class="ot">&lt;-</span> <span class="cf">function</span>(data, indices) {</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> data[indices,])</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">coef</span>(model))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap z pakietem boot</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>boot_results_reg <span class="ot">&lt;-</span> <span class="fu">boot</span>(data, reg_func, <span class="at">R =</span> <span class="dv">1000</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>boot_ci_reg <span class="ot">&lt;-</span> <span class="fu">boot.ci</span>(boot_results_reg, <span class="at">type =</span> <span class="st">&quot;perc&quot;</span>, <span class="at">index =</span> <span class="dv">2</span>)  <span class="co"># dla nachylenia</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>boot_results_reg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ORDINARY NONPARAMETRIC BOOTSTRAP
+
+
+Call:
+boot(data = data, statistic = reg_func, R = 1000)
+
+
+Bootstrap Statistics :
+    original      bias    std. error
+t1* 2.071017 0.009256839  0.09892006
+t2* 2.852158 0.005243704  0.09446421</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>boot_ci_reg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+Based on 1000 bootstrap replicates
+
+CALL : 
+boot.ci(boot.out = boot_results_reg, type = &quot;perc&quot;, index = 2)
+
+Intervals : 
+Level     Percentile     
+95%   ( 2.686,  3.060 )  
+Calculations and Intervals on Original Scale</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="estymacja-wariancji-z-wykorzystaniem-bootstrap" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Estymacja wariancji z wykorzystaniem bootstrap</h1>
+<p>Bootstrap w tym przypadku</p>
+<ol type="1">
+<li>losowanie ze zwracaniem</li>
+<li>imputacja</li>
+</ol>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href>R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href>Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> B)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  gosp_b <span class="ot">&lt;-</span> gosp[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(gosp),<span class="at">replace =</span> T), ]</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  gosp_b_imp <span class="ot">&lt;-</span> <span class="fu">impute_lm</span>(gosp_b, </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">formula =</span> dochg <span class="sc">~</span> . <span class="sc">-</span>wydg <span class="sc">-</span>los,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">add_residual =</span> <span class="st">&quot;observed&quot;</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  gosp_b_imp <span class="ot">&lt;-</span> <span class="fu">impute_lm</span>(gosp_b_imp, </span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">formula =</span> wydg <span class="sc">~</span> . <span class="sc">-</span>dochg <span class="sc">-</span>los,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">add_residual =</span> <span class="st">&quot;observed&quot;</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  model_b <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>((wydg<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>los) <span class="sc">~</span> <span class="fu">log</span>((dochg<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>los), <span class="at">data =</span> gosp_b_imp, <span class="at">subset =</span> dochg <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  coefs[b, ] <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_b)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(coefs, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]      [,2]
+2.5%  1.347590 0.7504002
+97.5% 1.550845 0.7812926</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <p>TBA</p>
 </div>
 </div>

@@ -1,0 +1,253 @@
+---
+title: "8. Estymacja wariancji"
+format: 
+  html:
+    self-contained: true
+    number-sections: true
+    toc: true
+    toc-title: "Spis treści"
+editor: source
+---
+
+# Wczytanie potrzebnych pakietów
+
+::: panel-tabset
+## R
+
+```{r pakiety, message=F, warning=F}
+library(readxl)
+library(mice)
+library(modelsummary)
+library(simputation)
+library(boot)
+
+```
+
+
+## Python
+
+```{python moduly}
+import numpy as np
+import pandas as pd
+# from samplics.weighting import SampleWeight ## do naprawienia
+```
+
+:::
+
+
+# Estymacja wariancji z pakietem `mice`
+
+Wykorzystamy wyłącznie regresję logistyczną bez i z LASSO.
+
+::: panel-tabset
+## R
+
+Wczytujemy przykładowe dane
+
+```{r}
+gosp <- read_excel("../data/gospodarstwa-zajecia.xlsx")
+gosp <- transform(gosp, 
+                  klm = as.factor(klm),
+                  woj = as.factor(woj))
+head(gosp)
+```
+
+W dwóch zmiennych mamy braki danych
+
+```{r}
+summary(gosp[, c("dochg", "wydg", "los")])
+```
+
+Imputacja metodą PMM
+
+```{r}
+gosp_imp <- mice(gosp)
+```
+
+Model bez uwzględnienia imputacji -- modelujemy elastyczność dochodową wydatków (na jednego członka gospodarstwa domowego).
+
+```{r}
+m1 <- lm(log((wydg+1)/los) ~ log((dochg+1)/los), data = gosp, subset = dochg > 0)
+```
+
+Z uwzgędnieniem imputacji 
+
+```{r}
+m2 <- with(gosp_imp, lm(log((wydg+1)/los) ~ log((dochg+1)/los), subset = dochg > 0))
+m2_pool <- pool(m2)
+```
+
+Podsumowanie wyników
+
+```{r}
+modelsummary(list("Bez imp"=m1, "Po imp"=m2_pool), 
+             conf_level = 0.95, 
+             statistic = c("conf.int", "std.error"))
+```
+
+## Python
+
+TBA
+
+
+:::
+
+# Bootstrap przykłady
+
+::: panel-tabset
+## R
+
+```{r}
+set.seed(123)
+# Generujemy dane
+n <- 100
+x <- rnorm(n, mean = 10, sd = 2)
+
+# Funkcja do bootstrapu średniej
+bootstrap_mean <- function(data, B = 1000) {
+  n <- length(data)
+  boot_means <- numeric(B)
+  
+  for(i in 1:B) {
+    # Losowanie ze zwracaniem
+    boot_sample <- sample(data, size = n, replace = TRUE)
+    boot_means[i] <- mean(boot_sample)
+  }
+  
+  # Obliczamy błąd standardowy i przedziały ufności
+  se <- sd(boot_means)
+  ci <- quantile(boot_means, c(0.025, 0.975))
+  
+  return(list(
+    mean = mean(boot_means),
+    se = se,
+    ci = ci
+  ))
+}
+```
+
+```{r}
+results_mean <- bootstrap_mean(x)
+results_mean
+```
+
+```{r}
+set.seed(123)
+# Funkcja pomocnicza dla pakietu boot
+mean_func <- function(data, indices) {
+  mean(data[indices])
+}
+
+# Bootstrap z pakietem boot
+boot_results_mean <- boot(x, mean_func, R = 1000)
+boot_ci_mean <- boot.ci(boot_results_mean, type = "perc")
+
+boot_results_mean
+```
+
+```{r}
+boot_ci_mean
+```
+
+```{r}
+# 2. Bootstrap dla regresji ----
+
+# Generujemy dane do regresji
+n <- 100
+x <- rnorm(n)
+y <- 2 + 3*x + rnorm(n)
+data <- data.frame(x = x, y = y)
+
+# A. Implementacja bez pakietu boot
+bootstrap_regression <- function(data, B = 1000) {
+  n <- nrow(data)
+  boot_coefs <- matrix(NA, nrow = B, ncol = 2)
+  
+  for(i in 1:B) {
+    # Losowanie indeksów
+    indices <- sample(1:n, size = n, replace = TRUE)
+    boot_data <- data[indices,]
+    
+    # Dopasowanie modelu
+    boot_model <- lm(y ~ x, data = boot_data)
+    boot_coefs[i,] <- coef(boot_model)
+  }
+  
+  # Obliczamy błędy standardowe i przedziały ufności
+  ses <- apply(boot_coefs, 2, sd)
+  cis <- apply(boot_coefs, 2, quantile, probs = c(0.025, 0.975))
+  
+  return(list(
+    coefs = colMeans(boot_coefs),
+    ses = ses,
+    cis = cis
+  ))
+}
+
+# Wykonujemy bootstrap dla regresji
+results_reg <- bootstrap_regression(data)
+results_reg
+```
+
+```{r}
+set.seed(123)
+reg_func <- function(data, indices) {
+  model <- lm(y ~ x, data = data[indices,])
+  return(coef(model))
+}
+
+# Bootstrap z pakietem boot
+boot_results_reg <- boot(data, reg_func, R = 1000)
+boot_ci_reg <- boot.ci(boot_results_reg, type = "perc", index = 2)  # dla nachylenia
+boot_results_reg
+```
+
+```{r}
+boot_ci_reg
+```
+
+## Python
+
+:::
+
+
+
+# Estymacja wariancji z wykorzystaniem bootstrap
+
+Bootstrap w tym przypadku
+
+1. losowanie ze zwracaniem
+2. imputacja
+
+::: panel-tabset
+## R
+
+```{r , warning=FALSE}
+set.seed(123)
+B <- 50
+coefs <- matrix(data = 0, ncol = 2, nrow = B)
+for (b in 1:B) {
+  gosp_b <- gosp[sample(1:nrow(gosp),replace = T), ]
+  gosp_b_imp <- impute_lm(gosp_b, 
+                          formula = dochg ~ . -wydg -los,
+                          add_residual = "observed")
+  gosp_b_imp <- impute_lm(gosp_b_imp, 
+                          formula = wydg ~ . -dochg -los,
+                          add_residual = "observed")
+  model_b <- lm(log((wydg+1)/los) ~ log((dochg+1)/los), data = gosp_b_imp, subset = dochg > 0)
+  coefs[b, ] <- coef(model_b)
+}
+```
+
+```{r}
+apply(coefs, 2, quantile, probs = c(0.025, 0.975))
+```
+
+## Python
+
+TBA
+
+
+:::
+
+
