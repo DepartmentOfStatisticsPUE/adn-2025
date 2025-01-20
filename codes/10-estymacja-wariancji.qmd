@@ -17,10 +17,10 @@ editor: source
 ```{r pakiety, message=F, warning=F}
 library(readxl)
 library(mice)
+library(quantreg)
 library(modelsummary)
 library(simputation)
 library(boot)
-
 ```
 
 
@@ -37,7 +37,7 @@ import pandas as pd
 
 # Estymacja wariancji z pakietem `mice`
 
-Wykorzystamy wyłącznie regresję logistyczną bez i z LASSO.
+Przypomnimy sobie jak estymować wariancję po zastosowaniu imputacji wielokrotnej
 
 ::: panel-tabset
 ## R
@@ -58,11 +58,25 @@ W dwóch zmiennych mamy braki danych
 summary(gosp[, c("dochg", "wydg", "los")])
 ```
 
-Imputacja metodą PMM
+Imputacja metodą PMM -- ustawienia domyślne
 
 ```{r}
 gosp_imp <- mice(gosp)
 ```
+
+W pierwszej kolejności zajmiemy się estymacją średniej
+
+```{r}
+gosp_imp |>
+  with(lm(dochg~1)) |>
+  pool() |>
+  summary()
+```
+
+Zadanie: 
+
++ proszę wykonac to samo dla zmiennej `los` i `wydg`
+
 
 Model bez uwzględnienia imputacji -- modelujemy elastyczność dochodową wydatków (na jednego członka gospodarstwa domowego).
 
